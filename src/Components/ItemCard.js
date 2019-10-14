@@ -18,14 +18,14 @@ export default class ItemCard extends React.Component {
         return (
             <Card>
                 <Card.Header as={"h5"}>{this.state.title}</Card.Header>
-                <Card.Img variant="top" src={this.state.image}/>
+                <Card.Img className="houseImg" variant="top" src={this.state.image} />
                 <Card.Body>
                     <div className="clearfix hidden-lg-up">
                         <Card.Text>{this.state.text}</Card.Text>
                     </div>
 
                 </Card.Body>
-                <Button className={"button-card"} href={this.state.url}>{this.state.buttonText}</Button>
+                <Button className={"button-card"} href={this.state.title}>{this.state.buttonText}</Button>
             </Card>
         );
     }

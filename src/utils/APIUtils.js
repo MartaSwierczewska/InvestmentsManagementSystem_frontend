@@ -20,6 +20,13 @@ export function getAllHouses() {
     });
 }
 
+export function getHouse(houseName){
+    return request({
+        url:API_BASE_URL+"/houseName",
+        method: 'GET'
+    });
+}
+
 export function getImage(itemName) {
     return require("../assets/dom.jpg")
     // try{
