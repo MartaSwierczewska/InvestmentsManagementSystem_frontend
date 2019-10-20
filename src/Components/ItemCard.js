@@ -10,7 +10,8 @@ export default class ItemCard extends React.Component {
             text: props.text,
             image:props.image,
             url:props.url,
-            buttonText: props.buttonText
+            buttonText: props.buttonText,
+            button_url:"api/"+props.title
         };
     }
 
@@ -23,9 +24,8 @@ export default class ItemCard extends React.Component {
                     <div className="clearfix hidden-lg-up">
                         <Card.Text>{this.state.text}</Card.Text>
                     </div>
-
                 </Card.Body>
-                <Button className={"button-card"} href={this.state.title}>{this.state.buttonText}</Button>
+                <Button className={"button-card"} href={this.state.button_url}>{this.state.buttonText}</Button>
             </Card>
         );
     }

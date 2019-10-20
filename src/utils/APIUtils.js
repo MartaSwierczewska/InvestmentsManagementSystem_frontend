@@ -1,4 +1,4 @@
-import {API_BASE_URL} from "../constants/Constants";
+import {API_BASE_URL, TODO_URL} from "../constants/Constants";
 
 const request = (options) => {
     const headers = new Headers({
@@ -12,17 +12,16 @@ const request = (options) => {
         .then(response => response.json());
 };
 
+export function getAllTodos(){
+    return request({
+       url: TODO_URL,
+       method: 'GET'
+    });
+}
 
 export function getAllHouses() {
     return request({
         url: API_BASE_URL,
-        method: 'GET'
-    });
-}
-
-export function getHouse(houseName){
-    return request({
-        url:API_BASE_URL+"/houseName",
         method: 'GET'
     });
 }

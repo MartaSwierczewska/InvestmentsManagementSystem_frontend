@@ -1,21 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import TodoTask from "./TodoTask";
+import {getAllTodos} from "../../utils/APIUtils";
 
-const Todo = props => (
-    <tr>
-        <td className={props.todo.completed ? 'completed' : ''}>{props.todo.description}</td>
-    </tr>
-)
-
-const Checkbox = props => (
-    <input type="checkbox" {...props} />
-)
 export default class TodoList extends Component {
-
-    state = {checked: false}
-    handleCheckboxChange = event =>
-        this.setState({checked: event.target.checked})
-
 
     constructor(props) {
         super(props);
@@ -23,25 +10,19 @@ export default class TodoList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8080/todos')
-            .then(response => {
-                this.setState({todos: response.data});
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
-    }
-
-    todoList() {
-        return this.state.todos.map(function (currentTodo, i) {
-            return <Todo todo={currentTodo} key={i}/>;
-        })
+        getAllTodos()
+            .then((result)=>{
+                let i = 0;
+                let todos = result.map((item) =>
+                    <TodoTask key={i++} description={item.description} completed={item.completed}/>
+                );
+                this.setState({todos: todos});
+                });
     }
 
     render() {
         return (
             <div className={"mx-4 flex-fill"}>
-                <h3>Todos List</h3>
                 <table className="table table-striped" style={{marginTop: 20}}>
                     <thead>
                     <tr>
@@ -49,7 +30,7 @@ export default class TodoList extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.todoList()}
+                        {this.state.todos}
                     </tbody>
                 </table>
             </div>
