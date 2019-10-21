@@ -27,10 +27,5 @@ export function getAllHouses() {
 }
 
 export function getImage(itemName) {
-    return require("../assets/dom.jpg")
-    // try{
-    //     return require(`../assets/projects/${itemName}.png`);
-    // } catch(error){
-    //     return require(`../assets/projects/site_frontend.png`);
-    // }
+    return require(`../assets/houses/${itemName}.jpg`);
 }

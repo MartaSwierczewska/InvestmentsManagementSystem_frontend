@@ -26,7 +26,7 @@ export default class TodoList extends Component {
                 <table className="table table-striped" style={{marginTop: 20}}>
                     <thead>
                     <tr>
-                        <th>Description</th>
+                        <th>To do</th>
                     </tr>
                     </thead>
                     <tbody>

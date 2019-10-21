@@ -20,13 +20,13 @@ export default class TodoTask extends React.Component{
     render(){
         return(
             <div>
-                {this.state.description}
-                <label>
+                <label className={"ml-auto"}>
                     <Checkbox
                         checked={this.state.completed}
                         onChange={this.handleCheckboxChange}
                     />
                 </label>
+                {this.state.description}
             </div>
         )
     }
