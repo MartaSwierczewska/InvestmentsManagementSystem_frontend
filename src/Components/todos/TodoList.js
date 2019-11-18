@@ -7,6 +7,7 @@ export default class TodoList extends Component {
     constructor(props) {
         super(props);
         this.state = {todos: []};
+        this.showState=this.showState.bind(this);
     }
 
     componentDidMount() {
@@ -18,6 +19,10 @@ export default class TodoList extends Component {
                 );
                 this.setState({todos: todos});
                 });
+    }
+
+    showState(){
+        console.log(this.state.todos);
     }
 
     render() {
@@ -33,6 +38,7 @@ export default class TodoList extends Component {
                         {this.state.todos}
                     </tbody>
                 </table>
+                <button onClick={this.showState}>show</button>
             </div>
         )
     }

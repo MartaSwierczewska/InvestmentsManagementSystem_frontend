@@ -14,7 +14,7 @@ const request = (options) => {
 
 export function getAllTodos(){
     return request({
-       url: TODO_URL,
+       url: TODO_URL+"/all",
        method: 'GET'
     });
 }
@@ -27,5 +27,5 @@ export function getAllHouses() {
 }
 
 export function getImage(itemName) {
-    return require(`../assets/houses/${itemName}.jpg`);
+    return require(`../assets/houses/house1.jpg`);
 }

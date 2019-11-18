@@ -5,6 +5,7 @@ import TopBar from "./Components/topbar/TopBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Background from './assets/background.jpg';
 import {BrowserRouter, Route} from "react-router-dom";
+import TodoListFromInternet from "./Components/todos/TodoListFromInternet";
 import TodoList from "./Components/todos/TodoList";
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
                     <Route exact path={"/"}>
                         <House/>
                     </Route>
-                    <Route path="/api/:t">
+                    <Route path="/api/house1">
                         <TodoList/>
                     </Route>
                 </BrowserRouter>

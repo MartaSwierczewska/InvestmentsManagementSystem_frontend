@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Checkbox = props => (
-    <input type="checkbox" {...props} />
+    <input type="checkbox" {...props}/>
 )
 
 export default class TodoTask extends React.Component{
@@ -20,7 +20,7 @@ export default class TodoTask extends React.Component{
     render(){
         return(
             <div>
-                <label className={"ml-auto"}>
+                <label className={"m-2"}>
                     <Checkbox
                         checked={this.state.completed}
                         onChange={this.handleCheckboxChange}
