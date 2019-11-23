@@ -6,14 +6,12 @@ const Checkbox = props => (
 
 export default class TodoTask extends React.Component{
 
-    handleCheckboxChange = event =>
-        this.setState({completed: event.target.completed})
-
     constructor(props){
         super(props);
         this.state = {
+            numer: props.numer,
             description: props.description,
-            completed: props.completed
+            completed: props.completed || false
         };
     }
 
@@ -23,13 +21,11 @@ export default class TodoTask extends React.Component{
                 <label className={"m-2"}>
                     <Checkbox
                         checked={this.state.completed}
-                        onChange={this.handleCheckboxChange}
+                        onChange={this.props.onChange}
                     />
                 </label>
                 {this.state.description}
             </div>
         )
     }
-
-
 }
