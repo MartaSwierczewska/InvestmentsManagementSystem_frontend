@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 export default class Checkbox extends Component {
     state = {
         isChecked: false,
-    }
+    };
 
     toggleCheckboxChange = () => {
         const { handleCheckboxChange, label } = this.props;
@@ -16,14 +16,14 @@ export default class Checkbox extends Component {
         ));
 
         handleCheckboxChange(label);
-    }
+    };
 
     render() {
         const { label } = this.props;
         const { isChecked } = this.state;
 
         return (
-            <div className="checkbox">
+            <div>
                 <label>
                     <input
                         type="checkbox"
