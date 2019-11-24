@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import TodoTask from "./TodoTask";
 import {getAllTodos} from "../../utils/APIUtils";
-import { ListGroup, ListGroupItem, Button } from 'reactstrap';
+import {MDBListGroup, MDBListGroupItem, MDBContainer, MDBBtn, MDBInput} from "mdbreact";
 
 export default class TodoList extends Component {
 
@@ -32,20 +32,19 @@ export default class TodoList extends Component {
 
     render() {
         return (
-            <div style={{justifyContent: 'center', alignItems: 'center', textAlign: 'center', marginLeft: '40%', marginRight: '40%'}}>
-                <h2 style={{background: 'white', padding: '20px', marginLeft: '50px', marginRight: '50px', marginTop: '10px', width: '250 px', boxShadow: '5px 2px 20px 5px'}}>To do list:</h2>
-                <ListGroup style={{boxShadow: '5px 2px 20px 5px', borderRadius: '25px'}}>
+            <MDBContainer className={"shadow-box-example z-depth-5"} style={{marginTop:'30px'}}>
+                <h1 style={{margin: '10px', textAlign: 'center'}}>To do list:</h1>
+                <MDBListGroup style={{ width: "22rem", position: 'relative', left:'34%'}}>
                     {this.state.todos.map((item, i) =>
-                        <ListGroupItem key={i}>
+                        <MDBListGroupItem key={i} style={{padding: '20px'}}>
                             {item.description}
-                            <input type="checkbox" onChange={this.onToggle.bind(this, i)}
-                                   style={{justifyContent: 'center', alignItems: 'center', margin: '10px'}}/>
-                        </ListGroupItem>
+                            <MDBInput type="checkbox" onChange={this.onToggle.bind(this, i)} style={{display: 'inline', bottom: '0px', right: '-120px'}}/>
+                        </MDBListGroupItem>
                     )}
-                </ListGroup>
+                </MDBListGroup>
                 <br/>
-                <Button onClick={this.showState}>Save</Button>
-            </div>
+                <MDBBtn color='elegant' style={{position: 'relative', left: '45%'}} onClick={this.showState}>Save</MDBBtn>
+            </MDBContainer>
         )
     }
 }
