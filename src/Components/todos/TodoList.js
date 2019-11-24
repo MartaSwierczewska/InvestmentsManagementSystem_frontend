@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TodoTask from "./TodoTask";
 import {getAllTodos} from "../../utils/APIUtils";
+import {MDBListGroup, MDBListGroupItem, MDBContainer, MDBBtn, MDBInput} from "mdbreact";
 
 export default class TodoList extends Component {
 
@@ -31,18 +32,19 @@ export default class TodoList extends Component {
 
     render() {
         return (
-            <div className={"mx-4 flex-fill"}>
-                <ul>
+            <MDBContainer className={"shadow-box-example z-depth-5"} style={{marginTop:'30px'}}>
+                <h1 style={{margin: '10px', textAlign: 'center'}}>To do list:</h1>
+                <MDBListGroup style={{ width: "22rem", position: 'relative', left:'34%'}}>
                     {this.state.todos.map((item, i) =>
-                        <li key={i}>
+                        <MDBListGroupItem key={i} style={{padding: '20px'}}>
                             {item.description}
-                            <input type="checkbox" onChange={this.onToggle.bind(this, i)} />
-                        </li>
+                            <MDBInput type="checkbox" onChange={this.onToggle.bind(this, i)} style={{display: 'inline', bottom: '0px', right: '-120px'}}/>
+                        </MDBListGroupItem>
                     )}
-                </ul>
+                </MDBListGroup>
                 <br/>
-                <button onClick={this.showState}>show</button>
-            </div>
+                <MDBBtn color='elegant' style={{position: 'relative', left: '45%'}} onClick={this.showState}>Save</MDBBtn>
+            </MDBContainer>
         )
     }
 }
