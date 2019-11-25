@@ -17,7 +17,7 @@ class App extends Component {
                     <Route exact path={"/"}>
                         <House/>
                     </Route>
-                    <Route path="/api/house1">
+                    <Route path="/api/house:t">
                         <TodoList/>
                     </Route>
                 </BrowserRouter>

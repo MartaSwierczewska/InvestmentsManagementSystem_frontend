@@ -9,6 +9,7 @@ export default class TodoList extends Component {
         super(props);
         this.state = {todos: []};
         this.showState = this.showState.bind(this);
+        this.sendJsonTodos=this.sendJsonTodos.bind(this);
     }
 
     componentDidMount() {
@@ -30,6 +31,21 @@ export default class TodoList extends Component {
         console.log(this.state.todos);
     }
 
+    sendJsonTodos(){
+        // var request=new XMLHttpRequest();
+        // request.open('POST','http://localhost:8080/todos/house1',true);
+        // request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        // request.send(this.state.todos);
+        fetch('http://localhost:8080/house1', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(this.state.todos)
+        })
+    }
+
     render() {
         return (
             <MDBContainer className={"shadow-box-example z-depth-5"} style={{marginTop:'30px'}}>
@@ -44,6 +60,7 @@ export default class TodoList extends Component {
                 </MDBListGroup>
                 <br/>
                 <MDBBtn color='elegant' style={{position: 'relative', left: '45%'}} onClick={this.showState}>Save</MDBBtn>
+                <MDBBtn color='elegant' style={{position: 'relative', left: '45%'}} onClick={this.sendJsonTodos}>Send</MDBBtn>
             </MDBContainer>
         )
     }
