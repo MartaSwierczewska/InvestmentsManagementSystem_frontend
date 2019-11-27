@@ -12,16 +12,16 @@ const request = (options) => {
         .then(response => response.json());
 };
 
-export function getAllTodos(){
+export function getAllHouses(){
     return request({
-       url: TODO_URL+"/all",
+       url: API_BASE_URL,
        method: 'GET'
     });
 }
 
-export function getAllHouses() {
+export function getTodosHouse(houseName) {
     return request({
-        url: API_BASE_URL,
+        url: API_BASE_URL+"/"+houseName+"/todos",
         method: 'GET'
     });
 }

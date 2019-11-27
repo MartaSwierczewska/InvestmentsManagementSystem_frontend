@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import TodoTask from "./TodoTask";
-import {getAllTodos} from "../../utils/APIUtils";
+import {getTodosHouse} from "../../utils/APIUtils";
 import {MDBListGroup, MDBListGroupItem, MDBContainer, MDBBtn, MDBInput} from "mdbreact";
 
 export default class TodoList extends Component {
@@ -8,14 +8,21 @@ export default class TodoList extends Component {
     constructor(props) {
         super(props);
         this.state = {todos: []};
+        this.houseName = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
         this.showState = this.showState.bind(this);
         this.sendJsonTodos=this.sendJsonTodos.bind(this);
     }
 
     componentDidMount() {
-        getAllTodos()
+        getTodosHouse(this.houseName)
             .then((result) => {
-                this.setState({todos: result});
+                var listTodos = result.map((houseData)=>{
+                    var todo = {description:houseData.todo.description, completed:houseData.status.completed};
+                    return todo;
+                    // console.log(todo);
+                })
+                this.setState({todos:listTodos});
+                console.log(listTodos);
             });
     }
 
@@ -32,11 +39,7 @@ export default class TodoList extends Component {
     }
 
     sendJsonTodos(){
-        // var request=new XMLHttpRequest();
-        // request.open('POST','http://localhost:8080/todos/house1',true);
-        // request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-        // request.send(this.state.todos);
-        fetch('http://localhost:8080/house1', {
+        fetch('http://localhost:8080/'+this.houseName, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -54,7 +57,7 @@ export default class TodoList extends Component {
                     {this.state.todos.map((item, i) =>
                         <MDBListGroupItem key={i} style={{padding: '20px'}}>
                             {item.description}
-                            <MDBInput type="checkbox" onChange={this.onToggle.bind(this, i)} style={{display: 'inline', bottom: '0px', right: '-120px'}}/>
+                            <MDBInput type="checkbox" onChange={this.onToggle.bind(this, i)} style={{display: 'inline', bottom: '0px', right: '-120px'}} checked={item.completed}/>
                         </MDBListGroupItem>
                     )}
                 </MDBListGroup>
