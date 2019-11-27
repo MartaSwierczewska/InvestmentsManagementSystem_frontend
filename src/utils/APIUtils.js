@@ -26,6 +26,6 @@ export function getTodosHouse(houseName) {
     });
 }
 
-export function getImage(itemName) {
-    return require(`../assets/houses/house1.jpg`);
+export function getImage(houseName) {
+    return require(`../assets/houses/${houseName}.jpg`);
 }

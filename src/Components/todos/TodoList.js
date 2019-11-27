@@ -62,7 +62,6 @@ export default class TodoList extends Component {
                     )}
                 </MDBListGroup>
                 <br/>
-                <MDBBtn color='elegant' style={{position: 'relative', left: '45%'}} onClick={this.showState}>Save</MDBBtn>
                 <MDBBtn color='elegant' style={{position: 'relative', left: '45%'}} onClick={this.sendJsonTodos}>Send</MDBBtn>
             </MDBContainer>
         )
