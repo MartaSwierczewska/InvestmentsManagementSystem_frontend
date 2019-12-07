@@ -104,7 +104,7 @@ export default class TodoList extends Component {
         return (
             <MDBContainer className={"shadow-box-example z-depth-5"} style={{marginTop: '30px'}}>
                 <h1 style={{margin: '10px', textAlign: 'center'}}>To do list:</h1>
-                <MDBListGroup style={{width: "30rem", position: 'relative', left: '34%'}}>
+                <MDBListGroup style={{width: "30rem", position: 'relative', left: '31%'}}>
                     {this.state.todos.map((item, i) =>
                         <MDBListGroupItem key={i} style={{padding: '20px'}}>
                             <h4>{item.description}</h4>
@@ -122,7 +122,7 @@ export default class TodoList extends Component {
                     )}
                 </MDBListGroup>
                 <br/>
-                <MDBBtn color='elegant' style={{position: 'relative', left: '45%'}}
+                <MDBBtn color='elegant' style={{position: 'relative', left: '47%'}}
                         onClick={this.sendJsonTodos}>Send</MDBBtn>
             </MDBContainer>
         )
