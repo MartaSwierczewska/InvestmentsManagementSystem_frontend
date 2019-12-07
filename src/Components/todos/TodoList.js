@@ -87,7 +87,7 @@ export default class TodoList extends Component {
     downloadFile(id) {
         fetch('http://localhost:8080/' + this.houseName + '/' + id)
             .then(response => {
-                const filename = 'file';
+                const filename = this.state.todos[id%4-1].documentName;
                 response.blob().then(blob => {
                     let url = window.URL.createObjectURL(blob);
                     let a = document.createElement('a');
