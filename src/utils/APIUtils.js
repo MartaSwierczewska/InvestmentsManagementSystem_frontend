@@ -30,15 +30,3 @@ export function getImage(houseName) {
     return require(`../assets/houses/${houseName}.jpg`);
 }
 
-// export function upload(formData, houseName, id){
-//     return request({
-//         url: API_BASE_URL+'/'+houseName+'/'+id,
-//         method: 'POST',
-//         body: formData
-//     }).then(res => {
-//         if(res.ok) {
-//             console.log(res.data);
-//             alert("File uploaded successfully.")
-//         }
-//     });
-// }
