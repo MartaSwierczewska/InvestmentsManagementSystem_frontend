@@ -74,6 +74,15 @@
 }
 
 .background{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
+}
+
+.backgroundTODO{
+  height: 100%;
+  margin-top: -30px;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;

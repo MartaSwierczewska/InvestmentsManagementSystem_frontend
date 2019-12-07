@@ -1,4 +1,4 @@
-import {API_BASE_URL} from "../constants/Constants";
+const API_BASE_URL = 'http://localhost:8080';
 
 const request = (options) => {
     const headers = new Headers({
