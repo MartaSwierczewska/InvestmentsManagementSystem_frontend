@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getTodosHouse, getDocumentNames} from "../../utils/APIUtils";
+import {getTodosHouse} from "../../utils/APIUtils";
 import {MDBBtn, MDBContainer, MDBInput, MDBListGroup, MDBListGroupItem} from "mdbreact";
 
 import axios from 'axios';
@@ -73,6 +73,8 @@ export default class TodoList extends Component {
         data.append('name', 'my_file');
 
         this.uploadFileToServer(id, data).then((response) => {
+            alert("File uploaded successfully.");
+            window.location.reload();
         }).catch(function (error) {
             console.log(error);
             if (error.response) {
@@ -102,16 +104,19 @@ export default class TodoList extends Component {
         return (
             <MDBContainer className={"shadow-box-example z-depth-5"} style={{marginTop: '30px'}}>
                 <h1 style={{margin: '10px', textAlign: 'center'}}>To do list:</h1>
-                <MDBListGroup style={{width: "22rem", position: 'relative', left: '34%'}}>
+                <MDBListGroup style={{width: "30rem", position: 'relative', left: '34%'}}>
                     {this.state.todos.map((item, i) =>
                         <MDBListGroupItem key={i} style={{padding: '20px'}}>
                             <h4>{item.description}</h4>
                             <MDBInput type="checkbox" onChange={this.onToggle.bind(this, i)}
-                                      style={{display: 'inline', bottom: '0px', right: '-120px'}}
+                                      style={{display: 'inline', bottom: '0px', right: '-180px'}}
                                       checked={item.completed}/>
-                            <input type="file" className="form-control" name="file"
+
+                            <button onClick={this.downloadFile.bind(this, item.idGeneral)}>
+                                <i className="fas fa-file-download"/> {item.documentName}</button>
+
+                            <input style={{marginTop:'15px', width:'250px'}}type="file" className="form-control" name="file"
                                    onChange={this.handleUploadFile.bind(this, item.idGeneral)}/>
-                            <button onClick={this.downloadFile.bind(this, item.idGeneral)}>Download {item.documentName}</button>
 
                         </MDBListGroupItem>
                     )}
