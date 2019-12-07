@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {getTodosHouse} from "../../utils/APIUtils";
 import {MDBListGroup, MDBListGroupItem, MDBContainer, MDBBtn, MDBInput} from "mdbreact";
 
+import axios from 'axios';
+
 export default class TodoList extends Component {
 
     constructor(props) {
@@ -10,6 +12,10 @@ export default class TodoList extends Component {
         this.houseName = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
         this.showState = this.showState.bind(this);
         this.sendJsonTodos=this.sendJsonTodos.bind(this);
+        // this.onFileChangeHandler=this.onFileChangeHandler.bind(this);
+        this.handleUploadFile=this.handleUploadFile.bind(this);
+        this.downloadFile=this.downloadFile.bind(this);
+
     }
 
     componentDidMount() {
@@ -47,32 +53,51 @@ export default class TodoList extends Component {
         })
     }
 
-    onFileChangeHandler = (id, e) => {
-        e.preventDefault();
-        this.setState({
-            selectedFile: e.target.files[0]
-        });
-        const formData = new FormData();
-        formData.append('file', this.state.selectedFile);
+    getRestClient(){
+        if (!this.serviceInstance) {
+            this.serviceInstance = axios.create({
+                baseURL: 'http://localhost:8080/',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+        }
+        return this.serviceInstance;
+    }
 
-        fetch('http://localhost:8080/'+this.houseName+'/'+id, {
-            method: 'POST',
-            body: formData
-        }).then(res => {
-            if(res.ok) {
-                console.log(res.data);
-                alert("File uploaded successfully.")
+    uploadFileToServer(id, data){
+        return this.getRestClient().post(this.houseName+'/'+id, data);
+    }
+
+    handleUploadFile = (id, event) => {
+        const data = new FormData();
+        //using File API to get chosen file
+        let file = event.target.files[0];
+        console.log("Uploading file", event.target.files[0]);
+        data.append('file', event.target.files[0]);
+        data.append('name', 'my_file');
+
+
+        this.uploadFileToServer(id, data).then((response) => {
+            console.log("File " + file.name + " is uploaded");
+        }).catch(function (error) {
+            console.log(error);
+            if (error.response) {
+                //HTTP error happened
+                console.log("Upload error. HTTP error/status code=",error.response.status);
+            } else {
+                //some other error happened
+                console.log("Upload error. HTTP error/status code=",error.message);
             }
         });
-
     };
+
 
     downloadFile(id) {
         fetch('http://localhost:8080/'+this.houseName+'/'+id)
             .then(response => {
-
-                const filename =  response.headers.get("documentName");
-                console.log(filename);
+                const filename='file';
+                // const filename =  response.headers.get("documentName");
                 response.blob().then(blob => {
                     let url = window.URL.createObjectURL(blob);
                     let a = document.createElement('a');
@@ -93,7 +118,7 @@ export default class TodoList extends Component {
                             {item.description}
                             <MDBInput type="checkbox" onChange={this.onToggle.bind(this, i)} style={{display: 'inline', bottom: '0px', right: '-120px'}} checked={item.completed}/>
 
-                            <input type="file" className="form-control" name="file" onChange={this.onFileChangeHandler.bind(this, item.id)}/>
+                            <input type="file" className="form-control" name="file" onChange={this.handleUploadFile.bind(this, item.id)}/>
                             <button onClick={this.downloadFile.bind(this,item.id)}>Download</button>
 
                         </MDBListGroupItem>
