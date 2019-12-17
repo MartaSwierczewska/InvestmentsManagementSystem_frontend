@@ -13,7 +13,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className={"background"} style={{backgroundImage: `url(${Background})`}}>
+            <div>
                 <TopBar/>
                 <BrowserRouter>
                     <Route exact path={"/"}>

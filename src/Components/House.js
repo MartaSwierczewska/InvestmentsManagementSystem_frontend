@@ -2,6 +2,7 @@ import React from 'react';
 import CardDeck from "react-bootstrap/CardDeck";
 import ItemCard from "./ItemCard";
 import {getAllHouses, getImage} from "../utils/APIUtils";
+import Background from "../assets/background.jpg";
 
 
 export default class House extends React.Component {
@@ -27,7 +28,7 @@ export default class House extends React.Component {
 
     render() {
         return (
-            <div className={"my-4"}>
+            <div className={"background"} style={{backgroundImage: `url(${Background})`}}>
                 <CardDeck>
                     {this.state.cards}
                 </CardDeck>
