@@ -68,11 +68,12 @@ export default class TodoList extends Component {
 
     handleUploadFile = (id, event) => {
         const data = new FormData();
-
         data.append('file', event.target.files[0]);
         data.append('name', 'my_file');
 
         this.uploadFileToServer(id, data).then((response) => {
+            alert("File uploaded successfully");
+            window.location.reload();
         }).catch(function (error) {
             console.log(error);
             if (error.response) {

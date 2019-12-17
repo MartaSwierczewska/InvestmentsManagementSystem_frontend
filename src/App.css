@@ -80,4 +80,15 @@
   top: 0;
   left: 0;
 }
+.statisticsBackground{
+  background-image: url('assets/background.jpg');
+  background-color: darkgrey;
+  background-blend-mode: screen;
+}
 
+.bar{
+  width: 30%;
+}
+.pie{
+  width: 30%;
+}
