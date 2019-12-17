@@ -11,7 +11,7 @@ export default class ItemCard extends React.Component {
             image:props.image,
             url:props.url,
             buttonText: props.buttonText,
-            button_url:"api/"+props.title
+            button_url:props.name
         };
     }
 

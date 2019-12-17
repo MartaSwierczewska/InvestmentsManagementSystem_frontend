@@ -18,7 +18,7 @@ export default class TodoTask extends React.Component{
     render(){
         return(
             <div>
-                <label className={"m-2"}>
+                <label>
                     <Checkbox
                         checked={this.state.completed}
                         onChange={this.props.onChange}

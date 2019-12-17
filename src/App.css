@@ -23,6 +23,7 @@
 
 .houseImg{
   width: 150px;
+  height: 150px;
 }
 
 .card-deck {
@@ -39,10 +40,10 @@
 .card{
   flex:1;
   align-self: auto;
-  min-width:250px;
-  max-width:200px;
-  min-height: 300px;
-  margin-top: 20px;
+  min-width:300px;
+  max-width:240px;
+  min-height: 350px;
+  margin-top: 60px;
   margin-bottom: 20px;
 
 }
@@ -76,7 +77,25 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
+
 }
 
+.backgroundTODO{
+  height: 100%;
+  margin-top: -30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.statisticsBackground{
+  background-image: url('assets/background.jpg');
+  background-color: darkgrey;
+  background-blend-mode: screen;
+}
+
+.bar{
+  width: 30%;
+}
+.pie{
+  width: 30%;
+}
