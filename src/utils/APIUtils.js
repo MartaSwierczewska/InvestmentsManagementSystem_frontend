@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8080';
+import {API_BASE_URL, STATISTICS_URL} from "../constants/Constants";
 
 const request = (options) => {
     const headers = new Headers({
@@ -11,6 +11,13 @@ const request = (options) => {
     return fetch(options.url, options)
         .then(response => response.json());
 };
+
+export function getAllPercentsOfDoneTodos() {
+    return request({
+        url: STATISTICS_URL,
+        method: 'GET'
+    });
+}
 
 export function getAllHouses(){
     return request({

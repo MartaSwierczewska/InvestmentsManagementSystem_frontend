@@ -87,4 +87,15 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+.statisticsBackground{
+  background-image: url('assets/background.jpg');
+  background-color: darkgrey;
+  background-blend-mode: screen;
+}
 
+.bar{
+  width: 30%;
+}
+.pie{
+  width: 30%;
+}
