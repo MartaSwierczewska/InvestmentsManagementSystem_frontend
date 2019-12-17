@@ -25,18 +25,21 @@ export class GoogleMap extends React.Component {
 
     render() {
         return (
-            <Map
-                google={this.props.google}
-                zoom={12}
-                initialCenter={{lat: 52.2297, lng: 21.0252}}
-            >
-                {this.displayMarkers()}
-            </Map>
+
+                <Map
+                    google={this.props.google}
+                    zoom={12}
+                    initialCenter={{lat: 52.2297, lng: 21.0252}}
+                >
+                    {this.displayMarkers()}
+                </Map>
+
+
 
         );
     }
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDzcLMN59thR2eSJOkYZ5LDBEapfyI-Oe4'
+    apiKey: ''
 })(GoogleMap);

@@ -20,6 +20,8 @@ class App extends Component {
                         {/*    <GoogleMap/>*/}
                         {/*</div>*/}
 
+                        {/*<GoogleMap/>*/}
+
                     </Route>
                     <Route path="/house:t">
                         <TodoList/>

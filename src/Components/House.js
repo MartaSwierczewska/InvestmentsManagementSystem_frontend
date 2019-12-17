@@ -3,6 +3,7 @@ import CardDeck from "react-bootstrap/CardDeck";
 import ItemCard from "./ItemCard";
 import {getAllHouses, getImage} from "../utils/APIUtils";
 import Background from "../assets/background.jpg";
+import GoogleMap from "./GoogleMap";
 
 export default class House extends React.Component {
     constructor(props) {
@@ -29,9 +30,10 @@ export default class House extends React.Component {
         return (
             <div className={"background"} style={{backgroundImage: `url(${Background})`}}>
                 {/*<div style={{width: "65%", float: "right"}}>*/}
-                    <CardDeck>
+                    <CardDeck style={{paddingBottom:'50px'}}>
                         {this.state.cards}
                     </CardDeck>
+                <GoogleMap/>
                 {/*</div>*/}
             </div>
         )
