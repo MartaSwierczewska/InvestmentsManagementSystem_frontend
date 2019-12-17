@@ -4,7 +4,6 @@ import ItemCard from "./ItemCard";
 import {getAllHouses, getImage} from "../utils/APIUtils";
 import Background from "../assets/background.jpg";
 
-
 export default class House extends React.Component {
     constructor(props) {
         super(props);
@@ -29,9 +28,11 @@ export default class House extends React.Component {
     render() {
         return (
             <div className={"background"} style={{backgroundImage: `url(${Background})`}}>
-                <CardDeck>
-                    {this.state.cards}
-                </CardDeck>
+                {/*<div style={{width: "65%", float: "right"}}>*/}
+                    <CardDeck>
+                        {this.state.cards}
+                    </CardDeck>
+                {/*</div>*/}
             </div>
         )
     }
