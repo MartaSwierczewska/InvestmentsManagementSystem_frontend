@@ -25,7 +25,6 @@ export class GoogleMap extends React.Component {
 
     render() {
         return (
-
             <Map
                 google={this.props.google}
                 zoom={12}
@@ -39,5 +38,5 @@ export class GoogleMap extends React.Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: ''
+    apiKey: 'AIzaSyDzcLMN59thR2eSJOkYZ5LDBEapfyI-Oe4'
 })(GoogleMap);
