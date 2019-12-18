@@ -28,7 +28,7 @@ export function getAllHouses(){
 
 export function getTodosHouse(houseName) {
     return request({
-        url: API_BASE_URL+"/"+houseName+"/todos",
+        url: API_BASE_URL+"/api/"+houseName+"/todos",
         method: 'GET'
     });
 }
