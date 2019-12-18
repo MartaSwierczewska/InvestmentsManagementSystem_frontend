@@ -33,9 +33,6 @@ export class GoogleMap extends React.Component {
                 >
                     {this.displayMarkers()}
                 </Map>
-
-
-
         );
     }
 }

@@ -16,8 +16,7 @@ export default class Chart extends Component {
                 let houseNames = result.map((item) => {
                     return {houseName: item.nameToShow};
                 });
-
-                console.log(houseNames)
+                console.log(houseNames);
 
                 this.setState({
                     chartData: {
@@ -72,21 +71,27 @@ export default class Chart extends Component {
                                 text: 'All done todos in investments',
                                 fontSize: 25
                             },
-                            layout: {
-                                padding: {
-                                    left: 400,
-                                    right: 400,
-                                    bottom: 200
-                                }
-                            },
                             legend: {
                                 display: this.props.displayLegend,
                                 position: this.props.legendPosition
                             },
                             options: {
                                 responsive: true,
-                                maintainAspectRatio: false,
-                            }
+                                // maintainAspectRatio: true,
+                                style:{
+                                    width: "40%",
+                                    aspectRatio: 0.4,
+                                }
+                            },
+                            scales: {
+                                yAxes: [{
+                                    display: true,
+                                    ticks: {
+                                        min: 0,    // minimum will be 0, unless there is a lower value.
+                                        max: 14,
+                                    }
+                                }]
+                            },
 
                         }}
                     />
@@ -98,17 +103,10 @@ export default class Chart extends Component {
                                 text: 'All done todos in investments',
                                 fontSize: 25
                             },
-                            layout: {
-                                padding: {
-                                    left: 400,
-                                    right: 400,
-                                    bottom: 200
-                                }
-                            },
                             legend: {
                                 display: this.props.displayLegendPie,
                                 position: this.props.legendPosition
-                            }
+                            },
                         }}
                     />
                 </div>
