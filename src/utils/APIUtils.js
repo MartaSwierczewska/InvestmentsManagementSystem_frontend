@@ -21,7 +21,7 @@ export function getAllPercentsOfDoneTodos() {
 
 export function getAllHouses(){
     return request({
-       url: API_BASE_URL,
+       url: API_BASE_URL+"/all",
        method: 'GET'
     });
 }

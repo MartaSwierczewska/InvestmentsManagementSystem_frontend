@@ -28,11 +28,10 @@ export default class House extends React.Component {
     render() {
         return (
             <div className={"background"} style={{backgroundImage: `url(${Background})`}}>
-                {/*<div style={{width: "65%", float: "right"}}>*/}
-                    <CardDeck>
-                        {this.state.cards}
-                    </CardDeck>
-                {/*</div>*/}
+                <CardDeck>
+                    {this.state.cards}
+                </CardDeck>
+
             </div>
         )
     }
