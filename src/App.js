@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route} from "react-router-dom";
 import TodoList from "./Components/todos/TodoList";
 import Chart from './Components/Chart';
-import GoogleMap from "./Components/GoogleMap";
 
 class App extends Component {
     render() {
@@ -16,12 +15,6 @@ class App extends Component {
                 <BrowserRouter>
                     <Route exact path={"/"}>
                         <House/>
-                        {/*<div style={{width: "35%", float: "left"}}>*/}
-                        {/*    <GoogleMap/>*/}
-                        {/*</div>*/}
-
-                        {/*<GoogleMap/>*/}
-
                     </Route>
                     <Route path="/house:t">
                         <TodoList/>

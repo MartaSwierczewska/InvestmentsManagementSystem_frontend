@@ -21,14 +21,14 @@ export function getAllPercentsOfDoneTodos() {
 
 export function getAllHouses(){
     return request({
-       url: API_BASE_URL,
+       url: API_BASE_URL+"/all",
        method: 'GET'
     });
 }
 
 export function getTodosHouse(houseName) {
     return request({
-        url: API_BASE_URL+"/api/"+houseName+"/todos",
+        url: API_BASE_URL+"/"+houseName+"/todos",
         method: 'GET'
     });
 }
