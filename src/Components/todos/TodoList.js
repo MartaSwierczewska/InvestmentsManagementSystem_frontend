@@ -41,7 +41,7 @@ export default class TodoList extends Component {
     }
 
     sendJsonTodos() {
-        fetch('http://localhost:8080/api/' + this.houseName, {
+        fetch('http://localhost:8080/house/' + this.houseName, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -54,7 +54,7 @@ export default class TodoList extends Component {
     getRestClient() {
         if (!this.serviceInstance) {
             this.serviceInstance = axios.create({
-                baseURL: 'http://localhost:8080/',
+                baseURL: 'http://localhost:8080/house/',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -88,7 +88,7 @@ export default class TodoList extends Component {
 
 
     downloadFile(id) {
-        fetch('http://localhost:8080/api/' + this.houseName + '/' + id)
+        fetch('http://localhost:8080/house/' + this.houseName + '/' + id)
             .then(response => {
                 const filename = this.state.todos[id % 4 - 1].documentName;
                 response.blob().then(blob => {
