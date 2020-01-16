@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route} from "react-router-dom";
 import TodoList from "./Components/todos/TodoList";
 import Chart from './Components/Chart';
+import Chart2 from './Components/todos/Chart2'
 
 class App extends Component {
     render() {
@@ -22,6 +23,7 @@ class App extends Component {
                     <Route path="/statistics">
                         <div className={"statisticsBackground"}>
                             <Chart/>
+                            <Chart2/>
                         </div>
                     </Route>
                 </BrowserRouter>

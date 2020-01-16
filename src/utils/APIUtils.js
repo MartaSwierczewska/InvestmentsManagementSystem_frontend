@@ -37,3 +37,9 @@ export function getImage(houseName) {
     return require(`../assets/houses/${houseName}.jpg`);
 }
 
+export function getDatesOfAllTodos(){
+    return request({
+        url: STATISTICS_URL+"/datetimes",
+        method: 'GET'
+    });
+}

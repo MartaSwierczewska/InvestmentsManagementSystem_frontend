@@ -25,7 +25,6 @@ export default class Chart extends Component {
                 });
             });
 
-
         getAllPercentsOfDoneTodos()
             .then((result) => {
                 var percents = result.map((item) => {
