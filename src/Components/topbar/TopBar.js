@@ -16,7 +16,7 @@ export default class TopBar extends React.Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
                         <Nav.Link href="/" style={{fontSize:"20px"}}>Home</Nav.Link>
-                        <Nav.Link href="/statistics" style={{fontSize:"20px"}}>Statistics</Nav.Link>
+                        <Nav.Link href="/admin">Admin Page</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>)
