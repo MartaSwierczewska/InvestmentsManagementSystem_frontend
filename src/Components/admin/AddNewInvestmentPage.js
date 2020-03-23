@@ -1,5 +1,6 @@
 import React from "react";
 import {sendCreatedInvestment} from "../../utils/APIUtils";
+import Button from "@material-ui/core/Button";
 
 
 export default class AddNewInvestmentPage extends React.Component{
@@ -30,21 +31,25 @@ export default class AddNewInvestmentPage extends React.Component{
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Name:
-                    <input type="text" name={'name'} onChange={this.handleChange} />
-                </label>
-                <label>
-                    NameToShow:
-                    <input type="text" name={'nameToShow'} onChange={this.handleChange} />
-                </label>
-                <label>
-                    Description:
-                    <input type="text" name={'description'} onChange={this.handleChange} />
-                </label>
-                <input type="submit" value="Wyślij" />
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Name:
+                        <input type="text" name={'name'} onChange={this.handleChange} />
+                    </label>
+                    <label>
+                        NameToShow:
+                        <input type="text" name={'nameToShow'} onChange={this.handleChange} />
+                    </label>
+                    <label>
+                        Description:
+                        <input type="text" name={'description'} onChange={this.handleChange} />
+                    </label>
+                    <input type="submit" value="Wyślij" />
+                </form>
+                <Button href={"/admin"}>Powrót do panelu admina</Button>
+            </div>
+
         );
     }
 }

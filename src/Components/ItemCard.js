@@ -6,12 +6,12 @@ export default class ItemCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: props.id,
             title: props.title,
             text: props.text,
             image:props.image,
             url:props.url,
-            buttonText: props.buttonText,
-            button_url:props.name
+            buttonText: props.buttonText
         };
     }
 
@@ -25,7 +25,7 @@ export default class ItemCard extends React.Component {
                         <Card.Text>{this.state.text}</Card.Text>
                     </div>
                 </Card.Body>
-                <Button className={"button-card"} href={this.state.button_url}>{this.state.buttonText}</Button>
+                <Button className={"button-card"} href={"/investment/"+this.state.id}>{this.state.buttonText}</Button>
             </Card>
         );
     }

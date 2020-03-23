@@ -17,7 +17,7 @@ export default class House extends React.Component {
             .then((result) => {
                 let i = 0;
                 let cards = result.map((item) =>
-                    <ItemCard key={i++} title={item.nameToShow} name={item.name} text={item.description}
+                    <ItemCard key={i++} id={item.id} title={item.nameToShow} name={item.name} text={item.description}
                               image={getImage(item.name)} url="item.name" buttonText={"See investment"}/>
                 );
                 this.setState({cards: cards});
