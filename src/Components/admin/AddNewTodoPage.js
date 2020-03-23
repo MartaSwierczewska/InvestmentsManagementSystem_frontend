@@ -1,11 +1,11 @@
 import React from "react";
-import {sendCreatedInvestment} from "../../utils/APIUtils";
 import Button from "@material-ui/core/Button";
+import {sendCreatedTodo} from "../../utils/APIUtils";
 
-export default class AddNewInvestmentPage extends React.Component{
+export default class AddNewTodoPage extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {name: '', nameToShow:'', description:''};
+        this.state = {text: '', completed:''};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,13 +19,13 @@ export default class AddNewInvestmentPage extends React.Component{
 
     handleSubmit(event) {
         event.preventDefault();
-        sendCreatedInvestment(this.state)
+        sendCreatedTodo(this.state)
             .then(response => {
-               alert("Dodano inwestycję: "+this.state.name);
-               window.location.reload();
+                alert("Dodano todo: "+this.state.text);
+                window.location.reload();
             }).catch(function(error){
-                console.log('There has been a problem with your fetch operation: ', error.message);
-            });
+            console.log('There has been a problem with your fetch operation: ', error.message);
+        });
     }
 
     render() {
@@ -33,16 +33,12 @@ export default class AddNewInvestmentPage extends React.Component{
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Name:
-                        <input type="text" name={'name'} onChange={this.handleChange} />
+                        Text:
+                        <input type="text" name={'text'} onChange={this.handleChange} />
                     </label>
                     <label>
-                        NameToShow:
-                        <input type="text" name={'nameToShow'} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Description:
-                        <input type="text" name={'description'} onChange={this.handleChange} />
+                        Completed:
+                        <input type="text" name={'completed'} onChange={this.handleChange} />
                     </label>
                     <input type="submit" value="Wyślij" />
                 </form>

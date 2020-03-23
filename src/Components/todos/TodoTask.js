@@ -9,8 +9,7 @@ export default class TodoTask extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            numer: props.numer,
-            description: props.description,
+            text: props.text,
             completed: props.completed || false
         };
     }
@@ -24,7 +23,7 @@ export default class TodoTask extends React.Component{
                         onChange={this.props.onChange}
                     />
                 </label>
-                {this.state.description}
+                {this.state.text}
             </div>
         )
     }

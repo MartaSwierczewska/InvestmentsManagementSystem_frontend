@@ -7,6 +7,7 @@ import AddNewInvestmentPage from "./Components/admin/AddNewInvestmentPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route} from "react-router-dom";
 import TodoList from "./Components/todos/TodoList";
+import AddNewTodoPage from "./Components/admin/AddNewTodoPage";
 
 class App extends Component {
     render() {
@@ -20,8 +21,12 @@ class App extends Component {
                     <Route exact path={"/admin"}>
                         <AdminPage/>
                     </Route>
-                    <Route exact path={"/admin/newInvestment"}>
+                    <Route path={"/admin/newInvestment"}>
                         <AddNewInvestmentPage/>
+                    </Route>
+                    <Route path={"/admin/newTodo"}>
+                        {/*wyświetla addNewInvestmentPage !!!!!!!!!!!!*/}
+                        <AddNewTodoPage/>
                     </Route>
                     <Route path="/investment/:t">
                         <TodoList/>

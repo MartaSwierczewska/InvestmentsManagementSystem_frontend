@@ -1,4 +1,6 @@
-const API_BASE_URL = 'http://localhost:8080/api/investment';
+const API_BASE_INVESTMENT_URL = 'http://localhost:8080/api/investment';
+const API_BASE_TODO_URL = 'http://localhost:8080/api/todo';
+const API_BASE_URL = 'http://localhost:8080/api';
 
 const request = (options) => {
     const headers = new Headers({
@@ -12,10 +14,9 @@ const request = (options) => {
         .then(response => response.json());
 };
 
-
 export function getAllHouses(){
     return request({
-       url: API_BASE_URL,
+       url: API_BASE_INVESTMENT_URL,
        method: 'GET'
     });
 }
@@ -23,7 +24,7 @@ export function getAllHouses(){
 export function sendCreatedInvestment(data){
     // console.log(data);
     return request({
-        url: API_BASE_URL,
+        url: API_BASE_INVESTMENT_URL,
         method:'POST',
         body:JSON.stringify(data)
     });
@@ -31,29 +32,48 @@ export function sendCreatedInvestment(data){
 
 export function deleteInvestment(id){
     return request({
-        url: API_BASE_URL+'/'+id,
+        url: API_BASE_INVESTMENT_URL+'/'+id,
         method: 'DELETE'
     });
 }
 
-export function downloadFile(houseName, id){
+export function getAllTodos(){
     return request({
-        url: API_BASE_URL+'/'+houseName+'/'+id,
+        url: API_BASE_TODO_URL,
+        method: 'GET'
+    });
+}
+
+export function sendCreatedTodo(data){
+    return request({
+        url: API_BASE_TODO_URL,
+        method:'POST',
+        body:JSON.stringify(data)
+    });
+}
+
+
+
+
+
+export function downloadFile(houseId, id){
+    return request({
+        url: API_BASE_URL+'/'+houseId+'/'+id,
         method:'GET'
     });
 }
 
-export function uploadFileToServer(houseName,id, data){
+export function uploadFileToServer(idGeneral, data){
     return request({
-        url:API_BASE_URL+'/'+houseName+'/'+id,
+        url:API_BASE_URL+'/'+idGeneral,
         method:'POST',
         body:data //chyba juz jest dobry format
     });
 }
 
-export function sendTodos(todos,houseName){
+export function sendTodos(todos,investmentId){
     return request({
-       url:API_BASE_URL+'/'+houseName,
+       url:API_BASE_URL+'/'+investmentId,
        method:'POST',
        body:JSON.stringify(todos)
     });

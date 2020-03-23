@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {downloadFile, getTodosHouse, sendTodos, uploadFileToServer} from "../../utils/APIUtils";
+import {downloadFile, sendTodos, uploadFileToServer} from "../../utils/APIUtils";
 import {MDBBtn, MDBContainer, MDBInput, MDBListGroup, MDBListGroupItem} from "mdbreact";
 import Background from "../../assets/background.jpg";
 
@@ -56,7 +56,7 @@ export default class TodoList extends Component {
     }
 
     sendJsonTodos() {
-        sendTodos(this.state.todos, this.houseName)
+        sendTodos(this.state.todos, this.investmentId)
             .then((response) => {
                 alert("Todos sent successfully.");
                 window.location.reload();
@@ -70,13 +70,12 @@ export default class TodoList extends Component {
         });
     }
 
-
-    handleUploadFile = (id, event) => {
+    handleUploadFile = (idGeneral, event) => {
         const data = new FormData();
         data.append('file', event.target.files[0]);
         data.append('name', 'my_file');
 
-        uploadFileToServer(id, data)
+        uploadFileToServer(idGeneral, data)
             .then((response) => {
             alert("File uploaded successfully.");
             window.location.reload();
@@ -91,7 +90,7 @@ export default class TodoList extends Component {
     };
 
     downloadFile(id) {
-        downloadFile(this.houseName,id)
+        downloadFile(id)
             .then(response => {
                 const filename = this.state.todos[id % 4 - 1].documentName;
                 response.blob().then(blob => {
@@ -104,6 +103,8 @@ export default class TodoList extends Component {
             });
     }
 
+
+    // ten syf jest do poprawki !!!!!!!!!! XD
     render() {
         return (
             <div className={"backgroundTODO"} style={{backgroundImage: `url(${Background})`}}>
