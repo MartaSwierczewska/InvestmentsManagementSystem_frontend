@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {downloadFile, sendTodos, uploadFileToServer} from "../../utils/APIUtils";
+import {downloadFile, getTodosHouse, sendTodos, uploadFileToServer} from "../../utils/APIUtils";
 import {MDBBtn, MDBContainer, MDBInput, MDBListGroup, MDBListGroupItem} from "mdbreact";
 import Background from "../../assets/background.jpg";
 
@@ -16,35 +16,17 @@ export default class TodoList extends Component {
     }
 
     componentDidMount() {
-        // getTodosHouse(this.investmentId)
-        //     .then((result) => {
-        //         var listTodos = result.map((houseData) => {
-        //             return {
-        //                 idGeneral: houseData.id,
-        //                 idTodo: houseData.todo.id,
-        //                 description: houseData.todo.description,
-        //                 completed: houseData.completed,
-        //                 documentName: houseData.document.name
-        //             };
-        //         });
-        //         this.setState({todos: listTodos});
-        //     });
+        getTodosHouse(this.investmentId)
+            .then((result) => {
+                var listTodos = result.map((item) => {
+                    return {
+                        text:item.text,
+                        completed:item.completed
+                    };
+                });
+                this.setState({todos: listTodos});
+            });
 
-        var listTodos = [
-            {id:1,
-            text:'asf',
-            completed:true
-            },
-            {id:2,
-            text:'asffff',
-            completed:false
-            },
-            {id:3,
-            text:'asasef',
-            completed:true
-            }
-        ]
-        this.setState({todos:listTodos});
     }
 
     onToggle(index) {

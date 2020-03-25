@@ -52,6 +52,14 @@ export function sendCreatedTodo(data){
     });
 }
 
+export function getTodosHouse(investmentId) {
+    return request({
+        url: API_BASE_INVESTMENT_URL+'/'+investmentId+'/todos',
+        method: 'GET'
+    });
+}
+
+
 
 
 
@@ -79,13 +87,7 @@ export function sendTodos(todos,investmentId){
     });
 }
 
-export function getTodosHouse(investmentId) {
 
-    // return request({
-    //     url: API_BASE_URL+'/'+investmentId,
-    //     method: 'GET'
-    // });
-}
 
 export function getImage(houseName) {
     return require(`../assets/houses/house1.jpg`);
