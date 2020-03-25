@@ -57,11 +57,22 @@ export function getTodosHouse(investmentId) {
         url: API_BASE_INVESTMENT_URL+'/'+investmentId+'/todos',
         method: 'GET'
     });
+}gi
+
+export function sendTodos(todos,investmentId){
+    return request({
+        url:API_BASE_INVESTMENT_URL+'/'+investmentId+'/todos',
+        method:'POST',
+        body:JSON.stringify(todos)
+    });
+}
+
+export function getImage(houseName) {
+    return require(`../assets/houses/house1.jpg`);
 }
 
 
-
-
+//-------------------------------------------------
 
 
 export function downloadFile(houseId, id){
@@ -79,18 +90,8 @@ export function uploadFileToServer(idGeneral, data){
     });
 }
 
-export function sendTodos(todos,investmentId){
-    return request({
-       url:API_BASE_URL+'/'+investmentId,
-       method:'POST',
-       body:JSON.stringify(todos)
-    });
-}
 
 
 
-export function getImage(houseName) {
-    return require(`../assets/houses/house1.jpg`);
-}
 
 

@@ -26,7 +26,6 @@ export default class TodoList extends Component {
                 });
                 this.setState({todos: listTodos});
             });
-
     }
 
     onToggle(index) {
@@ -52,6 +51,8 @@ export default class TodoList extends Component {
         });
     }
 
+    //------------------------------------------------------------
+
     handleUploadFile = (idGeneral, event) => {
         const data = new FormData();
         data.append('file', event.target.files[0]);
@@ -74,6 +75,7 @@ export default class TodoList extends Component {
     downloadFile(id) {
         downloadFile(id)
             .then(response => {
+                // !!!! to jest taka troche sciema XD
                 const filename = this.state.todos[id % 4 - 1].documentName;
                 response.blob().then(blob => {
                     let url = window.URL.createObjectURL(blob);
@@ -85,8 +87,9 @@ export default class TodoList extends Component {
             });
     }
 
+    //-----------------------------------------------------------
 
-    // ten syf jest do poprawki !!!!!!!!!! XD
+    // ten syf jest do poprawki !!!!!!!! XD
     render() {
         return (
             <div className={"backgroundTODO"} style={{backgroundImage: `url(${Background})`}}>
