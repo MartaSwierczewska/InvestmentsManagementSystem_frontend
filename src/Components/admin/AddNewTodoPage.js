@@ -1,10 +1,12 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import {sendCreatedTodo} from "../../utils/APIUtils";
+import {sendDefaultTodo, sendSpecificInvestmentTodo} from "../../utils/APIUtils";
 
 export default class AddNewTodoPage extends React.Component{
+
     constructor(props) {
         super(props);
+        this.todoType=props.todoType;
         this.state = {text: '', completed:''};
 
         this.handleChange = this.handleChange.bind(this);
@@ -18,17 +20,30 @@ export default class AddNewTodoPage extends React.Component{
     };
 
     handleSubmit(event) {
-        event.preventDefault();
-        sendCreatedTodo(this.state)
-            .then(response => {
-                alert("Dodano todo: "+this.state.text);
-                window.location.reload();
-            }).catch(function(error){
-            console.log('There has been a problem with your fetch operation: ', error.message);
-        });
+        if(this.todoType==="default"){
+            event.preventDefault();
+            sendDefaultTodo(this.state)
+                .then(response => {
+                    alert("Dodano domyślne todo: "+this.state.text);
+                    window.location.reload();
+                }).catch(function(error){
+                console.log('There has been a problem with your fetch operation: ', error.message);
+            });
+        } else{
+            event.preventDefault();
+            sendSpecificInvestmentTodo(this.state, 1)
+                .then(response => {
+                    alert("Dodano todo "+this.state.text+" do inwestycji 1");
+                    window.location.reload();
+                }).catch(function(error){
+                console.log('There has been a problem with your fetch operation: ', error.message);
+            });
+
+        }
     }
 
     render() {
+        console.log(this.todoType);
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>

@@ -44,9 +44,17 @@ export function getAllTodos(){
     });
 }
 
-export function sendCreatedTodo(data){
+export function sendDefaultTodo(data){
     return request({
         url: API_BASE_TODO_URL,
+        method:'POST',
+        body:JSON.stringify(data)
+    });
+}
+
+export function sendSpecificInvestmentTodo(data, investmentId){
+    return request({
+        url: API_BASE_INVESTMENT_URL+'/'+investmentId+'/todo',
         method:'POST',
         body:JSON.stringify(data)
     });
@@ -57,11 +65,11 @@ export function getTodosHouse(investmentId) {
         url: API_BASE_INVESTMENT_URL+'/'+investmentId+'/todos',
         method: 'GET'
     });
-}gi
+}
 
-export function sendTodos(todos,investmentId){
+export function sendUpdatedTodos(todos,investmentId){
     return request({
-        url:API_BASE_INVESTMENT_URL+'/'+investmentId+'/todos',
+        url:API_BASE_INVESTMENT_URL+'/'+investmentId,
         method:'POST',
         body:JSON.stringify(todos)
     });

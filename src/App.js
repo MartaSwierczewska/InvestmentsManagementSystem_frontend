@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route} from "react-router-dom";
 import TodoList from "./Components/todos/TodoList";
 import AddNewTodoPage from "./Components/admin/AddNewTodoPage";
+import EditInvestment from "./Components/admin/EditInvestment";
 
 class App extends Component {
     render() {
@@ -25,8 +26,13 @@ class App extends Component {
                         <AddNewInvestmentPage/>
                     </Route>
                     <Route path={"/admin/newTodo"}>
-                        {/*wyświetla addNewInvestmentPage !!!!!!!!!!!!*/}
-                        <AddNewTodoPage/>
+                        <AddNewTodoPage todoType={"default"}/>
+                    </Route>
+                    <Route path={"/admin/:id/newTodo"}>
+                        <AddNewTodoPage todoType={"specificInvestment"}/>
+                    </Route>
+                    <Route path={"/admin/edit/:t"}>
+                        <EditInvestment/>
                     </Route>
                     <Route path="/investment/:t">
                         <TodoList/>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {downloadFile, getTodosHouse, sendTodos, uploadFileToServer} from "../../utils/APIUtils";
+import {downloadFile, getTodosHouse, sendTodos, sendUpdatedTodos, uploadFileToServer} from "../../utils/APIUtils";
 import {MDBBtn, MDBContainer, MDBInput, MDBListGroup, MDBListGroupItem} from "mdbreact";
 import Background from "../../assets/background.jpg";
 
@@ -37,7 +37,7 @@ export default class TodoList extends Component {
     }
 
     sendJsonTodos() {
-        sendTodos(this.state.todos, this.investmentId)
+        sendUpdatedTodos(this.state.todos, this.investmentId)
             .then((response) => {
                 alert("Todos sent successfully.");
                 window.location.reload();

@@ -14,7 +14,7 @@ export default class ItemCard extends React.Component {
             image:props.image,
             buttonTextEdit: props.buttonTextEdit,
             buttonTextDelete: props.buttonTextDelete,
-            button_url:'admin/edit/'+props.name
+            button_url:'admin/edit/'+props.id
         };
     }
 

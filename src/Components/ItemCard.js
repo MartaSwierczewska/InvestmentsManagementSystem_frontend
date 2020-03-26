@@ -7,11 +7,12 @@ export default class ItemCard extends React.Component {
         super(props);
         this.state = {
             id: props.id,
-            title: props.title,
-            text: props.text,
+            title:props.title,
+            name:props.name,
+            description: props.description,
             image:props.image,
             url:props.url,
-            buttonText: props.buttonText
+            buttonText: props.buttonText,
         };
     }
 
@@ -22,7 +23,7 @@ export default class ItemCard extends React.Component {
                 <Card.Img className="houseImg" variant="top" src={this.state.image} />
                 <Card.Body>
                     <div className="clearfix hidden-lg-up">
-                        <Card.Text>{this.state.text}</Card.Text>
+                        <Card.Text>{this.state.description}</Card.Text>
                     </div>
                 </Card.Body>
                 <Button className={"button-card"} href={"/investment/"+this.state.id}>{this.state.buttonText}</Button>

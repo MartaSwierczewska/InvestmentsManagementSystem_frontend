@@ -47,11 +47,11 @@ export default class AdminPage extends React.Component {
                 <Button href={"/admin/newInvestment"}>Dodaj inwestycję</Button>
                 <h3>Domyślnie dodawane czynności:</h3>
                 <ul>
-                    {/*!!!!!!!!!!!!!!!!!!   tu nie wiem jak dodac usuwanie i edycje w mapowaniu, moze trzeba uzyc todo task*/}
-                    { this.state.todos.map((item, i:1) =>
+                    {/* todo !!!!!!! tu nie wiem jak dodac usuwanie i edycje w mapowaniu, moze trzeba uzyc todo task*/}
+                    { this.state.todos.map((item) =>
                         <li key={item.id}>{item.text}</li>)}
                 </ul>
-                <Button href={"/admin/newTodo"}>Dodaj czynność</Button>
+                <Button href={"/admin/newTodo"}>Dodaj domyślne czynności</Button>
             </div>
         )
     }
