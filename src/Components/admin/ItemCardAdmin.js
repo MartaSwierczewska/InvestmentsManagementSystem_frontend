@@ -30,7 +30,7 @@ export default class ItemCard extends React.Component {
 
     render() {
         return (
-            <Card>
+            <Card style={{minWidth:"200px"}}>
                 <Card.Header as={"h5"}>{this.state.title}</Card.Header>
                 <Card.Img className="houseImg" variant="top" src={this.state.image} />
                 <Card.Body>
