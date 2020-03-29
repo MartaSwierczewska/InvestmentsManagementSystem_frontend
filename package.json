@@ -20,7 +20,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-scroll": "^1.7.14",
-    "react-svg-donuts": "^1.0.0"
+    "react-svg-donuts": "^1.0.0",
+    "reactjs-popup": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

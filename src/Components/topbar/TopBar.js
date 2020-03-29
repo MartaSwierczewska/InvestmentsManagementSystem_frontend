@@ -12,11 +12,11 @@ export default class TopBar extends React.Component {
                                className={"mx-auto navbar-brand"}/>
                     </div>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="ml-auto">
                         <Nav.Link href="/" style={{fontSize:"20px"}}>Home</Nav.Link>
-                        <Nav.Link href="/admin">Admin Page</Nav.Link>
+                        <Nav.Link href="/admin" style={{fontSize:"20px"}}>Admin Page</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>)

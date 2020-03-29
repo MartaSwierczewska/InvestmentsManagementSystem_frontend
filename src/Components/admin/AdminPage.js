@@ -3,7 +3,9 @@ import {getAllHouses, getAllTodos, getImage} from "../../utils/APIUtils";
 import ItemCardAdmin from "./ItemCardAdmin";
 import Background from "../../assets/background.jpg";
 import CardDeck from "react-bootstrap/CardDeck";
-import Button from "@material-ui/core/Button";
+import Popup from "reactjs-popup";
+import AddNewInvestmentPage from "./AddNewInvestmentPage";
+import Button from "react-bootstrap/Button";
 
 export default class AdminPage extends React.Component {
     constructor(props) {
@@ -44,14 +46,17 @@ export default class AdminPage extends React.Component {
                 <CardDeck>
                     {this.state.investments}
                 </CardDeck>
-                <Button href={"/admin/newInvestment"}>Dodaj inwestycję</Button>
+                <Popup modal trigger={<Button variant={"light"}> Add new investment</Button>}>
+                    <AddNewInvestmentPage/>
+                </Popup>
+
                 <h3>Domyślnie dodawane czynności:</h3>
                 <ul>
                     {/* todo !!!!!!! tu nie wiem jak dodac usuwanie i edycje w mapowaniu, moze trzeba uzyc todo task*/}
                     { this.state.todos.map((item) =>
                         <li key={item.id}>{item.text}</li>)}
                 </ul>
-                <Button href={"/admin/newTodo"}>Dodaj domyślne czynności</Button>
+                <Button variant="light" href={"/admin/newTodo"}>Dodaj domyślne czynności</Button>
             </div>
         )
     }

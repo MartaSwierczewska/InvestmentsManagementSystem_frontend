@@ -1,11 +1,14 @@
 import React from "react";
 import {sendCreatedInvestment} from "../../utils/APIUtils";
-import Button from "@material-ui/core/Button";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import {ButtonToolbar} from "react-bootstrap";
 
-export default class AddNewInvestmentPage extends React.Component{
+export default class AddNewInvestmentPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {name: '', nameToShow:'', description:''};
+        this.state = {name: '', nameToShow: '', description: ''};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,35 +21,52 @@ export default class AddNewInvestmentPage extends React.Component{
     };
 
     handleSubmit(event) {
-        event.preventDefault();
+        // event.preventDefault();
+        console.log(this.state)
         sendCreatedInvestment(this.state)
             .then(response => {
-               alert("Dodano inwestycję: "+this.state.name);
-               window.location.reload();
-            }).catch(function(error){
-                console.log('There has been a problem with your fetch operation: ', error.message);
-            });
+                alert("Dodano inwestycję: " + this.state.name);
+                // window.location.reload();
+            }).catch(function (error) {
+            console.log('There has been a problem with your fetch operation: ', error.message);
+        });
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Name:
-                        <input type="text" name={'name'} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        NameToShow:
-                        <input type="text" name={'nameToShow'} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Description:
-                        <input type="text" name={'description'} onChange={this.handleChange} />
-                    </label>
-                    <input type="submit" value="Wyślij" />
-                </form>
-                <Button href={"/admin"}>Powrót do panelu admina</Button>
+                <Form style={{margin: "10px"}}>
+                    <Form.Row>
+                        <Form.Group controlId="formGridName">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control name={'name'} placeholder="Enter name" onChange={this.handleChange}/>
+                        </Form.Group>
+
+                        <Form.Group controlId="formGridNameToShow">
+                            <Form.Label>NameToShow</Form.Label>
+                            <Form.Control name={'nameToShow'} placeholder="Enter name to show"
+                                          onChange={this.handleChange}/>
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Group controlId="formGridDescription">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control name={'description'} placeholder="Enter description"
+                                      onChange={this.handleChange}/>
+                    </Form.Group>
+                    <ButtonToolbar  className="justify-content-between">
+                        <ButtonGroup style={{margin:"0"}}>
+                            <Button style={{marginLeft:"0"}} variant="outline-primary" onClick={this.handleSubmit}>
+                                Submit
+                            </Button>
+                        </ButtonGroup>
+
+                        <ButtonGroup>
+                            <Button style={{marginRight:"0"}} variant="outline-primary" href={"/admin"}>
+                                Back
+                            </Button>
+                        </ButtonGroup>
+                    </ButtonToolbar>
+                </Form>
             </div>
 
         );
