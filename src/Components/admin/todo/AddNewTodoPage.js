@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import {sendDefaultTodo, sendSpecificInvestmentTodo} from "../../utils/APIUtils";
+import {sendDefaultTodo, sendSpecificInvestmentTodo} from "../../../utils/APIUtils";
 
 export default class AddNewTodoPage extends React.Component{
 

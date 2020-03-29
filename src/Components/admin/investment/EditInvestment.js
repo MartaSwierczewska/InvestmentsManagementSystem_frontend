@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {getTodosHouse} from "../../utils/APIUtils";
-import TodoList from "../todos/TodoList";
+import {getTodosHouse} from "../../../utils/APIUtils";
+import TodoList from "../../todos/TodoList";
 import Button from "@material-ui/core/Button";
 
 export default class EditInvestment extends Component {
