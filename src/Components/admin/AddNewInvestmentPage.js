@@ -20,12 +20,9 @@ export default class AddNewInvestmentPage extends React.Component {
         let val = event.target.value;
         this.setState({[nam]: val});
     };
-    sleep = (ms) => {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+
     handleSubmit(event) {
         event.preventDefault()
-        console.log(this.state)
         sendCreatedInvestment(this.state)
             .then(response => {
                 this.setState({isSuccessfullySaved: true});
@@ -67,15 +64,6 @@ export default class AddNewInvestmentPage extends React.Component {
                                 Success!
                             </Alert>
                         </ButtonGroup>}
-
-                        <ButtonGroup>
-                            <Button style={{marginRight: "0"}} variant="outline-primary" onClick={() => {
-                                this.props.close();
-                                window.location.reload()
-                            }}>
-                                Back
-                            </Button>
-                        </ButtonGroup>
                     </ButtonToolbar>
                 </Form>
             </div>

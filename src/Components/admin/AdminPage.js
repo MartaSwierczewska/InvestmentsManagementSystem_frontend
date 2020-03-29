@@ -6,13 +6,15 @@ import CardDeck from "react-bootstrap/CardDeck";
 import Popup from "reactjs-popup";
 import AddNewInvestmentPage from "./AddNewInvestmentPage";
 import Button from "react-bootstrap/Button";
+import {Modal} from "react-bootstrap";
 
 export default class AdminPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             investments: [],
-            todos:[]
+            todos:[],
+            isModal:false
         };
     }
 
@@ -38,6 +40,30 @@ export default class AdminPage extends React.Component {
             });
     }
 
+    modal(){
+        return <Modal
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Modal heading
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <h4>Centered Modal</h4>
+                <p>
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                    consectetur ac, vestibulum at eros.
+                </p>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={this.onHide}>Close</Button>
+            </Modal.Footer>
+        </Modal>
+    }
 
     render() {
         return (
@@ -46,10 +72,25 @@ export default class AdminPage extends React.Component {
                 <CardDeck>
                     {this.state.investments}
                 </CardDeck>
-                <Popup modal trigger={<Button variant={"light"}> Add new investment</Button>}>
-                    {close =>(<AddNewInvestmentPage close={close}/>)
-                    }
-                </Popup>
+                <Button variant={"light"} onClick={() => this.setState({isModal:true})}>Add new investment</Button>
+
+                <Modal show={this.state.isModal} onHide={() => {
+                    this.setState({isModal:false})
+                    window.location.reload()
+                }}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            New Investment
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <AddNewInvestmentPage/>
+                    </Modal.Body>
+                </Modal>
 
                 <h3>Domyślnie dodawane czynności:</h3>
                 <ul>
