@@ -47,7 +47,8 @@ export default class AdminPage extends React.Component {
                     {this.state.investments}
                 </CardDeck>
                 <Popup modal trigger={<Button variant={"light"}> Add new investment</Button>}>
-                    <AddNewInvestmentPage/>
+                    {close =>(<AddNewInvestmentPage close={close}/>)
+                    }
                 </Popup>
 
                 <h3>Domyślnie dodawane czynności:</h3>

@@ -22,7 +22,6 @@ export function getAllHouses(){
 }
 
 export function sendCreatedInvestment(data){
-    console.log(data);
     return request({
         url: API_BASE_INVESTMENT_URL,
         method:'POST',
