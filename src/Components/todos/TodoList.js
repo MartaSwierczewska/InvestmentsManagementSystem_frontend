@@ -89,7 +89,6 @@ export default class TodoList extends Component {
 
     //-----------------------------------------------------------
 
-    // ten syf jest do poprawki !!!!!!!! XD
     render() {
         return (
             <div className={"backgroundTODO"} style={{backgroundImage: `url(${Background})`}}>
