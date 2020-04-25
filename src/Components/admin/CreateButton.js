@@ -47,7 +47,7 @@ export default class CreateButton extends React.Component {
                 >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            New Investment
+                            {this.state.name}
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>

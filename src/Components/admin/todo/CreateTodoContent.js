@@ -1,5 +1,5 @@
 import React from "react";
-import {sendCreatedInvestment, sendDefaultTodo} from "../../../utils/APIUtils";
+import {sendCreatedInvestment, sendDefaultTodo, sendSpecificInvestmentTodo} from "../../../utils/APIUtils";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -14,6 +14,7 @@ export default class CreateTodoContent extends React.Component {
             description: '',
             isSuccessfullySaved: false
         };
+        this.investmentId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,7 +28,7 @@ export default class CreateTodoContent extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        sendDefaultTodo(this.state)
+        sendSpecificInvestmentTodo(this.state, this.investmentId)
             .then(response => {
                 this.setState({isSuccessfullySaved: true});
             }).catch(function (error) {
@@ -38,18 +39,6 @@ export default class CreateTodoContent extends React.Component {
     render() {
         return (
             <Form style={FormStyle}>
-                <Form.Row>
-                    <Form.Group controlId="formGridName">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control name={'name'} placeholder="ENTER TODO" onChange={this.handleChange}/>
-                    </Form.Group>
-
-                    <Form.Group controlId="formGridNameToShow">
-                        <Form.Label>NameToShow</Form.Label>
-                        <Form.Control name={'nameToShow'} placeholder="Enter name to show"
-                                      onChange={this.handleChange}/>
-                    </Form.Group>
-                </Form.Row>
                 <Form.Group controlId="formGridDescription">
                     <Form.Label>Description</Form.Label>
                     <Form.Control name={'description'} placeholder="Enter description"

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {getTodosHouse} from "../../../utils/APIUtils";
 import TodoList from "../../todos/TodoList";
 import Button from "@material-ui/core/Button";
+import CreateButton from "../CreateButton";
+import CreateTodoContent from "../todo/CreateTodoContent";
 
 export default class EditInvestment extends Component {
 
@@ -30,7 +32,7 @@ export default class EditInvestment extends Component {
         return (
             <div>
                 <TodoList/>
-                <Button href={"/admin/newTodo/"+this.investmentId}>Dodaj czynność</Button>
+                <CreateButton name={"Dodaj czynnosc"} body={<CreateTodoContent/>}/>
             </div>
         )
     }
