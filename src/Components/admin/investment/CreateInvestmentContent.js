@@ -12,7 +12,8 @@ export default class CreateInvestmentContent extends React.Component {
             nameToShow: '',
             description: '',
             isSuccessfullySaved: false,
-            fileName: ''
+            fileNamePath: '',
+            todos: []
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -71,7 +72,18 @@ export default class CreateInvestmentContent extends React.Component {
                 </Form.Group>
                 <input type="file" name="file" onChange={this.onChangeHandler}/>
 
-                {/*{getAllTodos}*/}
+                <div className="flex-container">
+
+                    <div className="flex-child magenta">
+                        Flex Column 1
+                    </div>
+
+                    <div className="flex-child green">
+                        Flex Column 2
+                    </div>
+
+                </div>
+                {this.getAllTodos()}
 
                 <ButtonToolbar className="justify-content-between">
                     <ButtonGroup style={ButtonGroupStyle}>
