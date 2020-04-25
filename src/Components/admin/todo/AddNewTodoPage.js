@@ -8,7 +8,7 @@ export default class AddNewTodoPage extends React.Component{
         super(props);
         this.todoType=props.todoType;
         this.state = {text: '', completed:''};
-        this.investmentId = window.location.href.substring(window.location.href.lastIndexOf('/') - 1);
+        this.investmentId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,10 +32,9 @@ export default class AddNewTodoPage extends React.Component{
             });
         } else{
             event.preventDefault();
-            console.log(this.investmentId)
-            sendSpecificInvestmentTodo(this.state, 1)
+            sendSpecificInvestmentTodo(this.state, this.investmentId)
                 .then(response => {
-                    alert("Dodano todo "+this.state.text+" do inwestycji 1");
+                    alert("Dodano todo "+this.state.text+" do inwestycji " + this.investmentId);
                     window.location.reload();
                 }).catch(function(error){
                 console.log('There has been a problem with your fetch operation: ', error.message);
