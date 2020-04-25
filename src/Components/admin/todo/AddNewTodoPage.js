@@ -48,12 +48,8 @@ export default class AddNewTodoPage extends React.Component{
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Text:
-                        <input type="text" name={'text'} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        Completed:
-                        <input type="text" name={'completed'} onChange={this.handleChange} />
+                        Description:
+                        <input type="description" name={'description'} onChange={this.handleChange} />
                     </label>
                     <input type="submit" value="Wyślij" />
                 </form>
