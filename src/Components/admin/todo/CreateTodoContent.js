@@ -1,5 +1,5 @@
 import React from "react";
-import {sendCreatedInvestment} from "../../../utils/APIUtils";
+import {sendCreatedInvestment, sendDefaultTodo} from "../../../utils/APIUtils";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -27,7 +27,7 @@ export default class CreateTodoContent extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        sendCreatedInvestment(this.state)
+        sendDefaultTodo(this.state)
             .then(response => {
                 this.setState({isSuccessfullySaved: true});
             }).catch(function (error) {

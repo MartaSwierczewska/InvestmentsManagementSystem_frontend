@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
-import {downloadFile, getTodosHouse, sendTodos, sendUpdatedTodos, uploadFileToServer} from "../../utils/APIUtils";
-import {MDBBtn, MDBContainer, MDBInput, MDBListGroup, MDBListGroupItem} from "mdbreact";
+import {downloadFile, getTodosHouse, sendUpdatedTodos, uploadFileToServer} from "../../utils/APIUtils";
+import {MDBInput} from "mdbreact";
 import Background from "../../assets/background.jpg";
+import Button from "react-bootstrap/Button";
+import {Container, ListGroup} from "react-bootstrap";
+import InputGroup from "react-bootstrap/InputGroup";
+import Checkbox from "./Checkbox";
 
 export default class TodoList extends Component {
 
@@ -19,9 +23,11 @@ export default class TodoList extends Component {
         getTodosHouse(this.investmentId)
             .then((result) => {
                 var listTodos = result.map((item) => {
+                    console.log(item)
                     return {
-                        text:item.text,
-                        completed:item.completed
+                        id: item.todo.id,
+                        description: item.todo.description,
+                        completed: item.completed
                     };
                 });
                 this.setState({todos: listTodos});
@@ -37,6 +43,7 @@ export default class TodoList extends Component {
     }
 
     sendJsonTodos() {
+        console.log("XD")
         sendUpdatedTodos(this.state.todos, this.investmentId)
             .then((response) => {
                 alert("Todos sent successfully.");
@@ -60,9 +67,9 @@ export default class TodoList extends Component {
 
         uploadFileToServer(idGeneral, data)
             .then((response) => {
-            alert("File uploaded successfully.");
-            window.location.reload();
-        }).catch(function (error) {
+                alert("File uploaded successfully.");
+                window.location.reload();
+            }).catch(function (error) {
             console.log(error);
             if (error.response) {
                 console.log("Upload error. HTTP error/status code=", error.response.status);
@@ -92,30 +99,32 @@ export default class TodoList extends Component {
     render() {
         return (
             <div className={"backgroundTODO"} style={{backgroundImage: `url(${Background})`}}>
-                <MDBContainer className={"shadow-box-example z-depth-5"} style={{marginTop: '30px'}}>
-                    <h1 style={{paddingTop: '40px', paddingBottom:'10px', textAlign: 'center'}}>To do list:</h1>
-                    <MDBListGroup style={{width: "30rem", position: 'relative', left: '31%'}}>
+                <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px'}}>
+                    <h1 style={{paddingTop: '40px', paddingBottom: '10px', textAlign: 'center'}}>To do list:</h1>
+                    <ListGroup style={{width: "30rem", position: 'relative', left: '31%'}}>
                         {this.state.todos.map((item, i) =>
-                            <MDBListGroupItem key={i} style={{padding: '20px'}}>
-                                <h4>{item.text}</h4>
-                                <MDBInput type="checkbox" onChange={this.onToggle.bind(this, i)}
-                                          style={{display: 'inline', bottom: '0px', right: '-180px'}}
-                                          checked={item.completed}/>
+                            <ListGroup.Item key={i} style={{padding: '20px'}}>
+                                <div>
+                                    <h4 style={{'display': 'inline'}}>{item.description}</h4>
+                                    <input type="checkbox" onChange={this.onToggle.bind(this, i)}
+                                           style={{bottom: '0px', right: '0px'}}
+                                           checked={item.completed}/>
+                                </div>
 
-                                {/*<button onClick={this.downloadFile.bind(this, item.idGeneral)}>*/}
-                                {/*    <i className="fas fa-file-download"/> {item.documentName}</button>*/}
+                                <button onClick={this.downloadFile.bind(this, item.idGeneral)}>
+                                    <i className="fas fa-file-download"/> {item.documentName}</button>
 
-                                {/*<input style={{marginTop: '15px', width: '250px'}} type="file" className="form-control"*/}
-                                {/*       name="file"*/}
-                                {/*       onChange={this.handleUploadFile.bind(this, item.idGeneral)}/>*/}
+                                <input style={{marginTop: '15px', width: '250px'}} type="file" className="form-control"
+                                       name="file"
+                                       onChange={this.handleUploadFile.bind(this, item.idGeneral)}/>
 
-                            </MDBListGroupItem>
+                            </ListGroup.Item>
                         )}
-                    </MDBListGroup>
+                    </ListGroup>
                     <br/>
-                    <MDBBtn color='elegant' style={{position: 'relative', left: '47%'}}
-                            onClick={this.sendJsonTodos}>Send</MDBBtn>
-                </MDBContainer>
+                    <Button color='elegant' style={{position: 'relative', left: '47%'}}
+                            onClick={this.sendJsonTodos}>Send</Button>
+                </Container>
             </div>
         )
     }

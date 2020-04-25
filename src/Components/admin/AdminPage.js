@@ -3,8 +3,6 @@ import CreateInvestmentContent from "./investment/CreateInvestmentContent";
 import {Container} from "react-bootstrap";
 import {PRIMARY_COLOR} from "../../utils/Const";
 import InvestmentList from "../shared/InvestmentList";
-import TodoList from "../shared/TodoList";
-import CreateTodoContent from "./todo/CreateTodoContent";
 import AdminSection from "./AdminSection";
 
 export default class AdminPage extends React.Component {
@@ -17,10 +15,6 @@ export default class AdminPage extends React.Component {
                               buttonBody={<CreateInvestmentContent/>}
                               givenStyle={TopContainerStyle}
                 />
-                <AdminSection sectionTitle="Activities"
-                              list={<TodoList/>}
-                              buttonName={"Create new todo"}
-                              buttonBody={<CreateTodoContent/>}/>
             </Container>
         )
     }
