@@ -1,4 +1,4 @@
-const API_BASE_INVESTMENT_URL = 'http://localhost:8080/api/investment';
+const API_BASE_INVESTMENT_URL = 'http://localhost:8080/api/house';
 const API_BASE_TODO_URL = 'http://localhost:8080/api/todo';
 const API_BASE_URL = 'http://localhost:8080/api';
 

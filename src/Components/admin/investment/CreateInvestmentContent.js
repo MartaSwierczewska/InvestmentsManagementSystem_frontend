@@ -9,14 +9,16 @@ export default class CreateInvestmentContent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
             nameToShow: '',
             description: '',
-            isSuccessfullySaved: false
+            isSuccessfullySaved: false,
+            fileName: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.getAllTodos = this.getAllTodos.bind(this);
     }
 
     handleChange = (event) => {
@@ -35,15 +37,27 @@ export default class CreateInvestmentContent extends React.Component {
         });
     }
 
+    onChangeHandler(event) {
+        this.setState({
+            fileName: event.target.files[0].name
+        })
+    }
+
+    getAllTodos() {
+        const content = posts.map((post) =>
+            <div key={post.id}>
+                <p>{post.description}</p>
+            </div>
+        );
+        return (<div>
+            {content}
+        </div>)
+    }
+
     render() {
         return (
             <Form style={FormStyle}>
                 <Form.Row>
-                    <Form.Group controlId="formGridName">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control name={'name'} placeholder="Enter name" onChange={this.handleChange}/>
-                    </Form.Group>
-
                     <Form.Group controlId="formGridNameToShow">
                         <Form.Label>NameToShow</Form.Label>
                         <Form.Control name={'nameToShow'} placeholder="Enter name to show"
@@ -55,6 +69,10 @@ export default class CreateInvestmentContent extends React.Component {
                     <Form.Control name={'description'} placeholder="Enter description"
                                   onChange={this.handleChange}/>
                 </Form.Group>
+                <input type="file" name="file" onChange={this.onChangeHandler}/>
+
+                {/*{getAllTodos}*/}
+
                 <ButtonToolbar className="justify-content-between">
                     <ButtonGroup style={ButtonGroupStyle}>
                         <Button style={ButtonStyle} variant="outline-primary" onClick={this.handleSubmit}>
@@ -72,7 +90,10 @@ export default class CreateInvestmentContent extends React.Component {
         );
     }
 }
-
+const posts = [
+    {id: 1, description: 'Hello World'},
+    {id: 2, description: 'Installation'}
+];
 const FormStyle = {
     margin: "10px"
 };
@@ -82,5 +103,5 @@ const ButtonGroupStyle = {
 };
 
 const ButtonStyle = {
-    marginLeft:"0"
+    marginLeft: "0"
 };
