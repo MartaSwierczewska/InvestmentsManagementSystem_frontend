@@ -1,5 +1,6 @@
 import React from "react";
 import {Badge} from "react-bootstrap";
+import {PRIMARY_COLOR} from "../../../utils/Const";
 
 export default class SectionTitle extends React.Component {
     constructor(props) {
@@ -28,8 +29,8 @@ const BadgeStyle = {
     padding: "15px",
     backgroundColor: "white",
     borderStyle: "solid",
-    borderColor: "#212121",
+    borderColor: PRIMARY_COLOR,
     borderWidth: "1px"
 };
 
-const H1Style = {fontWeight: 'bold', color: "#212121"};
+const H1Style = {fontWeight: 'bold', color: PRIMARY_COLOR};

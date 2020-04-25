@@ -122,7 +122,7 @@ export default class TodoList extends Component {
                         )}
                     </ListGroup>
                     <br/>
-                    <Button variant={"dark"} color='elegant' style={{position: 'relative', left: '47%'}}
+                    <Button variant={"elegant"} style={{position: 'relative', left: '47%'}}
                             onClick={this.sendJsonTodos}>Send</Button>
                 </Container>
             </div>
