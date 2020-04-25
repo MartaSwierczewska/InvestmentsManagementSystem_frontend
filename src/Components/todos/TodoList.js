@@ -106,9 +106,10 @@ export default class TodoList extends Component {
                             <ListGroup.Item key={i} style={{padding: '20px'}}>
                                 <div>
                                     <h4 style={{'display': 'inline'}}>{item.description}</h4>
-                                    <input type="checkbox" onChange={this.onToggle.bind(this, i)}
-                                           style={{bottom: '0px', right: '0px'}}
-                                           checked={item.completed}/>
+                                    <MDBInput type="checkbox" onChange={this.onToggle.bind(this, i)}
+                                              style={{display: 'inline', bottom: '0px', right: '-180px'}}
+                                              checked={item.completed}/>
+
                                 </div>
 
                                 <button onClick={this.downloadFile.bind(this, item.idGeneral)}>
