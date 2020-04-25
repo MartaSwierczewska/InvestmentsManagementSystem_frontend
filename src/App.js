@@ -27,10 +27,10 @@ class App extends Component {
                         <Route path={"/admin/newInvestment"}>
                             <CreateInvestmentContent/>
                         </Route>
-                        <Route path={"/admin/newTodo"}>
+                        <Route exact path={"/admin/newTodo"}>
                             <AddNewTodoPage todoType={"default"}/>
                         </Route>
-                        <Route path={"/admin/:id/newTodo"}>
+                        <Route path={"/admin/newTodo/:id"}>
                             <AddNewTodoPage todoType={"specificInvestment"}/>
                         </Route>
                         <Route path={"/admin/edit/:t"}>

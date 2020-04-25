@@ -30,9 +30,8 @@ export default class EditInvestment extends Component {
         return (
             <div>
                 <TodoList/>
-                <Button href={"/admin/"+this.investmentId+"/newTodo"}>Dodaj czynność</Button>
+                <Button href={"/admin/newTodo/"+this.investmentId}>Dodaj czynność</Button>
             </div>
-
         )
     }
 }
