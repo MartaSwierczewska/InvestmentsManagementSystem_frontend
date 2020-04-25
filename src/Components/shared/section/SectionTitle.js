@@ -28,8 +28,8 @@ const BadgeStyle = {
     padding: "15px",
     backgroundColor: "white",
     borderStyle: "solid",
-    borderColor: "#4285f4",
+    borderColor: "#212121",
     borderWidth: "1px"
 };
 
-const H1Style = {fontWeight: 'bold', color: "#4285f4"};
+const H1Style = {fontWeight: 'bold', color: "#212121"};

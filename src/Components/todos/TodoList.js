@@ -43,7 +43,6 @@ export default class TodoList extends Component {
     }
 
     sendJsonTodos() {
-        console.log("XD")
         sendUpdatedTodos(this.state.todos, this.investmentId)
             .then((response) => {
                 alert("Todos sent successfully.");
@@ -123,7 +122,7 @@ export default class TodoList extends Component {
                         )}
                     </ListGroup>
                     <br/>
-                    <Button color='elegant' style={{position: 'relative', left: '47%'}}
+                    <Button variant={"dark"} color='elegant' style={{position: 'relative', left: '47%'}}
                             onClick={this.sendJsonTodos}>Send</Button>
                 </Container>
             </div>
