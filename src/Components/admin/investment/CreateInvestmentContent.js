@@ -130,10 +130,6 @@ export default class CreateInvestmentContent extends React.Component {
         );
     }
 }
-const posts = [
-    {id: 1, description: 'Hello World'},
-    {id: 2, description: 'Installation'}
-];
 const FormStyle = {
     margin: "10px"
 };

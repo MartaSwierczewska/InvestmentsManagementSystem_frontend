@@ -15,6 +15,8 @@ export default class EditInvestment extends Component {
         getTodosHouse(this.investmentId)
             .then((result) => {
                 var listTodos = result.map((item) => {
+                    console.log(item)
+
                     return {
                         text:item.text,
                         completed:item.completed

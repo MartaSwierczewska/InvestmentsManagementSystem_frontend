@@ -16,7 +16,7 @@ const request = (options) => {
 
 export function getAllHouses(){
     return request({
-       url: API_BASE_INVESTMENT_URL,
+       url: API_BASE_INVESTMENT_URL + '/all',
        method: 'GET'
     });
 }
