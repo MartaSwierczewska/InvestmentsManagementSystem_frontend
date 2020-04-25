@@ -40,7 +40,7 @@ export default class CreateInvestmentContent extends React.Component {
 
     onChangeHandler(event) {
         this.setState({
-            fileName: event.target.files[0].name
+            fileNamePath: event.target.files[0].name
         })
     }
 
