@@ -48,6 +48,10 @@ export default class Login extends React.Component {
         })
     }
 
+    componentDidMount() {
+        localStorage.setItem('token', undefined);
+    }
+
     render() {
         return (
             <div style={{backgroundImage: `url(${Background})`}}>

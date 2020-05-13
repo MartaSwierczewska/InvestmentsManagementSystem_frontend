@@ -15,6 +15,9 @@ export default class TopBar extends React.Component {
                     <Nav className="ml-auto">
                         <Nav.Link href="/houses" style={{fontSize: "20px", color:"#222222"}}>Home</Nav.Link>
                     </Nav>
+                    <Nav className="ml-auto">
+                        <Nav.Link href="/" style={{fontSize: "20px", color:"#222222"}} >Logout</Nav.Link>
+                    </Nav>
                 </Navbar.Collapse>
             </Navbar>)
     }
