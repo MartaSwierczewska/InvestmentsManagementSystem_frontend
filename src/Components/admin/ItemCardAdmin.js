@@ -14,13 +14,13 @@ export default class ItemCard extends React.Component {
             image:props.image,
             buttonTextEdit: props.buttonTextEdit,
             buttonTextDelete: props.buttonTextDelete,
-            button_url:'admin/edit/'+props.id
+            button_url:'investment/'+props.id
         };
     }
 
     deleteHandler(id){
         deleteInvestment(id)
-            .then(response => {
+            .then((response) => {
                 alert("Usunięto inwestycję o id: "+this.state.id);
                 window.location.reload();
             }).catch(function(error){

@@ -26,7 +26,6 @@ export default class TodoList extends React.Component {
     render() {
         return (
             <ul>
-                {/* todo !!!!!!! tu nie wiem jak dodac usuwanie i edycje w mapowaniu, moze trzeba uzyc todo task*/}
                 {this.state.todos.map((item) =>
                     <li key={item.id}>{item.description}</li>)}
             </ul>

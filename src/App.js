@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
 import './App.css';
-import House from './Components/House.js';
 import TopBar from "./Components/topbar/TopBar";
-import AdminPage from "./Components/admin/AdminPage";
-import CreateInvestmentContent from "./Components/admin/investment/CreateInvestmentContent";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route} from "react-router-dom";
 import TodoList from "./Components/todos/TodoList";
-import AddNewTodoPage from "./Components/admin/todo/AddNewTodoPage";
-import EditInvestment from "./Components/admin/investment/EditInvestment";
 import {Container} from "react-bootstrap";
 import LoginPage from "./Components/login/LoginPage";
+import InvestmentList from "./Components/shared/InvestmentList";
 
 class App extends Component {
     render() {
@@ -22,23 +18,8 @@ class App extends Component {
                         <Route exact path={"/"}>
                             <LoginPage/>
                         </Route>
-                        <Route exact path={"/houses"}>
-                            <House/>
-                        </Route>
-                        <Route exact path={"/admin"}>
-                            <AdminPage/>
-                        </Route>
-                        <Route path={"/admin/newInvestment"}>
-                            <CreateInvestmentContent/>
-                        </Route>
-                        <Route exact path={"/admin/newTodo"}>
-                            <AddNewTodoPage todoType={"default"}/>
-                        </Route>
-                        <Route path={"/admin/newTodo/:id"}>
-                            <AddNewTodoPage todoType={"specificInvestment"}/>
-                        </Route>
-                        <Route path={"/admin/edit/:t"}>
-                            <EditInvestment/>
+                        <Route exact path={"/houses"} >
+                            <InvestmentList/>
                         </Route>
                         <Route path="/investment/:t">
                             <TodoList/>

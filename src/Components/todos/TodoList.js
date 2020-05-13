@@ -4,6 +4,8 @@ import {MDBInput} from "mdbreact";
 import Background from "../../assets/background.jpg";
 import Button from "react-bootstrap/Button";
 import {Container, ListGroup} from "react-bootstrap";
+import CreateTodoContent from "../admin/todo/CreateTodoContent";
+import CreateButton from "../admin/CreateButton";
 
 export default class TodoList extends Component {
 
@@ -95,8 +97,8 @@ export default class TodoList extends Component {
 
     render() {
         return (
-            <div className={"backgroundTODO"} style={{backgroundImage: `url(${Background})`}}>
-                <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px'}}>
+            <div className={"backgroundTODO"} style={{backgroundImage: `url(${Background})`, height: '90vh'}}>
+                <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px', height: '90vh'}}>
                     <h1 style={{paddingTop: '40px', paddingBottom: '10px', textAlign: 'center'}}>To do list:</h1>
                     <ListGroup style={{width: "30rem", position: 'relative', left: '31%'}}>
                         {this.state.todos.map((item, i) =>
@@ -120,8 +122,9 @@ export default class TodoList extends Component {
                         )}
                     </ListGroup>
                     <br/>
-                    <Button variant={"elegant"} style={{position: 'relative', left: '47%'}}
+                    <Button variant={"elegant"} style={{position: 'relative', left: '30%'}}
                             onClick={this.sendJsonTodos}>Send</Button>
+                    <CreateButton name={"Dodaj czynnosc"} body={<CreateTodoContent/>}/>
                 </Container>
             </div>
         )

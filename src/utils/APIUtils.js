@@ -6,7 +6,6 @@ const LOGIN_URL = 'http://localhost:8080/api/login';
 const request = (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json',
-
     });
     const defaults = {headers: headers,credentials: 'same-origin'};
     options = Object.assign({}, defaults, options);

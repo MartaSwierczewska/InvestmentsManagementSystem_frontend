@@ -1,6 +1,5 @@
 import React from 'react';
 import CardDeck from "react-bootstrap/CardDeck";
-import ItemCard from "./ItemCard";
 import {getAllHouses, getImage} from "../utils/APIUtils";
 import Background from "../assets/background.jpg";
 
@@ -17,8 +16,9 @@ export default class House extends React.Component {
             .then((result) => {
                 let i = 0;
                 let cards = result.map((item) =>
-                    <ItemCard key={i++} id={item.id} title={item.nameToShow} name={item.name} description={item.description}
-                              image={getImage(item.name)} url="item.name" buttonText={"See investment"}/>
+                    <ItemCardAdmin key={i++} id={item.id} title={item.nameToShow} name={item.name}
+                                   description={item.description}
+                                   image={getImage(item.name)} url="item.name" buttonText={"See investment"}/>
                 );
                 this.setState({cards: cards});
             });
@@ -27,11 +27,9 @@ export default class House extends React.Component {
 
     render() {
         return (
-            <div className={"background"} style={{backgroundImage: `url(${Background})`}}>
-                <CardDeck>
-                    {this.state.cards}
-                </CardDeck>
-            </div>
+            <CardDeck>
+                {this.state.cards}
+            </CardDeck>
         )
     }
 }
