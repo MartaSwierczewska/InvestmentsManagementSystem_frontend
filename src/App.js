@@ -10,7 +10,6 @@ import TodoList from "./Components/todos/TodoList";
 import AddNewTodoPage from "./Components/admin/todo/AddNewTodoPage";
 import EditInvestment from "./Components/admin/investment/EditInvestment";
 import {Container} from "react-bootstrap";
-import Login from "./Components/login/Login";
 import LoginPage from "./Components/login/LoginPage";
 
 class App extends Component {
@@ -21,7 +20,7 @@ class App extends Component {
                 <Container fluid style={{margin: "0", padding: "0"}}>
                     <BrowserRouter>
                         <Route exact path={"/"}>
-                            <Login/>
+                            <LoginPage/>
                         </Route>
                         <Route exact path={"/houses"}>
                             <House/>

@@ -16,6 +16,7 @@ export default class CreateInvestmentContent extends React.Component {
             nameToShow: '',
             description: '',
             isSuccessfullySaved: false,
+            showButton:false,
             fileNamePath: '',
             todos: []
         };
@@ -50,9 +51,11 @@ export default class CreateInvestmentContent extends React.Component {
         event.preventDefault();
         sendCreatedInvestment(this.state)
             .then(response => {
-                if(response.status===200){
+                // TODO: tak na chama jest zrobione, zakladajac ze zawsze ten sam token
+                if ( localStorage.getItem('token') === 'YWRtaW46YWRtaW4=') {
                     this.setState({isSuccessfullySaved: true});
                 }
+                this.setState({showButton:true});
             }).catch(function (error) {
             console.log('There has been a problem with your fetch operation: ', error.message);
         });
@@ -121,9 +124,16 @@ export default class CreateInvestmentContent extends React.Component {
                             Save
                         </Button>
                     </ButtonGroup>
-                    {this.state.isSuccessfullySaved && <ButtonGroup style={ButtonGroupStyle}>
+                    {console.log(this.state.isSuccessfullySaved)}
+                    {console.log(this.state.showButton)}
+                    {(this.state.isSuccessfullySaved && this.state.showButton) && <ButtonGroup style={ButtonGroupStyle}>
                         <Alert variant={"success"}>
                             Success!
+                        </Alert>
+                    </ButtonGroup>}
+                    {(!this.state.isSuccessfullySaved && this.state.showButton) && <ButtonGroup style={ButtonGroupStyle}>
+                        <Alert variant={"danger"}>
+                            Authorization required!
                         </Alert>
                     </ButtonGroup>}
                 </ButtonToolbar>

@@ -6,7 +6,7 @@ const LOGIN_URL = 'http://localhost:8080/api/login';
 const request = (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${localStorage.getItem('token')}`
+
     });
     const defaults = {headers: headers,credentials: 'same-origin'};
     options = Object.assign({}, defaults, options);
@@ -38,6 +38,7 @@ export function sendCreatedInvestment(data){
     return request({
         url: API_BASE_INVESTMENT_URL,
         method:'POST',
+        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         body:JSON.stringify(data)
     });
 }
