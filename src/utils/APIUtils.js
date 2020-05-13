@@ -42,9 +42,11 @@ export function sendCreatedInvestment(data){
     });
 }
 
+// auth
 export function deleteInvestment(id){
     return request({
         url: API_BASE_INVESTMENT_URL+'/'+id,
+        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         method: 'DELETE'
     });
 }
@@ -69,6 +71,7 @@ export function sendSpecificInvestmentTodo(data, investmentId){
     return request({
         url: API_BASE_INVESTMENT_URL+'/'+investmentId+'/todo',
         method:'POST',
+        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         body:JSON.stringify(data)
     });
 }

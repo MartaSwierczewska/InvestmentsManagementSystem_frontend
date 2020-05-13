@@ -97,7 +97,8 @@ export default class TodoList extends Component {
 
     render() {
         return (
-            <div className={"backgroundTODO"} style={{backgroundImage: `url(${Background})`, height: '90vh'}}>
+            <div className={"backgroundTODO"} style={{backgroundImage: `url(${Background})`,  backgroundRepeat: 'no-repeat',
+                backgroundAttachment: 'fixed', backgroundPosition: 'center', backgroundSize: 'cover'}}>
                 <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px', height: '90vh'}}>
                     <h1 style={{paddingTop: '40px', paddingBottom: '10px', textAlign: 'center'}}>To do list:</h1>
                     <ListGroup style={{width: "30rem", position: 'relative', left: '31%'}}>

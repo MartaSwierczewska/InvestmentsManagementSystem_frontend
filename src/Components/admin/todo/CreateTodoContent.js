@@ -9,10 +9,9 @@ export default class CreateTodoContent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            nameToShow: '',
             description: '',
-            isSuccessfullySaved: false
+            isSuccessfullySaved: false,
+            showButton:false
         };
         this.investmentId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
@@ -30,7 +29,11 @@ export default class CreateTodoContent extends React.Component {
         event.preventDefault();
         sendSpecificInvestmentTodo(this.state, this.investmentId)
             .then(response => {
-                this.setState({isSuccessfullySaved: true});
+                // TODO: tak na chama jest zrobione, zakladajac ze zawsze ten sam token
+                if ( localStorage.getItem('token') === 'YWRtaW46YWRtaW4=') {
+                    this.setState({isSuccessfullySaved: true});
+                }
+                this.setState({showButton:true});
             }).catch(function (error) {
             console.log('There has been a problem with your fetch operation: ', error.message);
         });
@@ -50,10 +53,14 @@ export default class CreateTodoContent extends React.Component {
                             Save
                         </Button>
                     </ButtonGroup>
-
-                    {this.state.isSuccessfullySaved && <ButtonGroup style={ButtonGroupStyle}>
+                    {(this.state.isSuccessfullySaved && this.state.showButton) && <ButtonGroup style={ButtonGroupStyle}>
                         <Alert variant={"success"}>
                             Success!
+                        </Alert>
+                    </ButtonGroup>}
+                    {(!this.state.isSuccessfullySaved && this.state.showButton) && <ButtonGroup style={ButtonGroupStyle}>
+                        <Alert variant={"danger"}>
+                            Authorization required!
                         </Alert>
                     </ButtonGroup>}
                 </ButtonToolbar>

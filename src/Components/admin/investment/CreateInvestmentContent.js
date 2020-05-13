@@ -36,7 +36,6 @@ export default class CreateInvestmentContent extends React.Component {
                 )
                 this.setState({todos: todos});
                 console.log(this.state.todos)
-
             })
     }
 
@@ -124,8 +123,6 @@ export default class CreateInvestmentContent extends React.Component {
                             Save
                         </Button>
                     </ButtonGroup>
-                    {console.log(this.state.isSuccessfullySaved)}
-                    {console.log(this.state.showButton)}
                     {(this.state.isSuccessfullySaved && this.state.showButton) && <ButtonGroup style={ButtonGroupStyle}>
                         <Alert variant={"success"}>
                             Success!
