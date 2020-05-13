@@ -100,6 +100,7 @@ export default class TodoList extends Component {
             <div className={"backgroundTODO"} style={{backgroundImage: `url(${Background})`,  backgroundRepeat: 'no-repeat',
                 backgroundAttachment: 'fixed', backgroundPosition: 'center', backgroundSize: 'cover'}}>
                 <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px', height: '90vh'}}>
+                    <CreateButton name={"Dodaj czynnosc"} body={<CreateTodoContent/>}/>
                     <h1 style={{paddingTop: '40px', paddingBottom: '10px', textAlign: 'center'}}>To do list:</h1>
                     <ListGroup style={{width: "30rem", position: 'relative', left: '31%'}}>
                         {this.state.todos.map((item, i) =>
@@ -123,9 +124,8 @@ export default class TodoList extends Component {
                         )}
                     </ListGroup>
                     <br/>
-                    <Button variant={"elegant"} style={{position: 'relative', left: '30%'}}
+                    <Button variant={"elegant"} style={{position: 'relative', left: '47%'}}
                             onClick={this.sendJsonTodos}>Send</Button>
-                    <CreateButton name={"Dodaj czynnosc"} body={<CreateTodoContent/>}/>
                 </Container>
             </div>
         )

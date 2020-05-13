@@ -30,10 +30,10 @@ export default class SectionTitle extends React.Component {
     render() {
         return (
             <div className={"background"} style={{backgroundImage: `url(${Background})`, height: '85vh'}}>
+                <CreateButton name={"Create new investment"} body={<CreateInvestmentContent/>}/>
                 <CardDeck>
                     {this.state.investments}
                 </CardDeck>
-                <CreateButton name={"Create new investment"} body={<CreateInvestmentContent/>}/>
             </div>
         )
     }

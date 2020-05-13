@@ -10,6 +10,7 @@ const request = (options) => {
     const defaults = {headers: headers,credentials: 'same-origin'};
     options = Object.assign({}, defaults, options);
 
+
     return fetch(options.url, options)
         .then(response => response.json());
 };
@@ -47,7 +48,8 @@ export function deleteInvestment(id){
     return request({
         url: API_BASE_INVESTMENT_URL+'/'+id,
         headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
-        method: 'DELETE'
+        method: 'DELETE',
+        mode: 'no-cors'
     });
 }
 

@@ -49,7 +49,7 @@ export default class CreateTodoContent extends React.Component {
                 </Form.Group>
                 <ButtonToolbar className="justify-content-between">
                     <ButtonGroup style={ButtonGroupStyle}>
-                        <Button style={ButtonStyle} variant="outline-primary" onClick={this.handleSubmit}>
+                        <Button style={ButtonStyle} variant={"elegant"} onClick={this.handleSubmit}>
                             Save
                         </Button>
                     </ButtonGroup>

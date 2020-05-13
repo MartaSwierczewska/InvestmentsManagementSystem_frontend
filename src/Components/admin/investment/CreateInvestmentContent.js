@@ -3,10 +3,10 @@ import {getAllTodos, sendCreatedInvestment} from "../../../utils/APIUtils";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import {Alert, ButtonToolbar} from "react-bootstrap";
+import {Alert, ButtonToolbar, Container} from "react-bootstrap";
 
 const Checkbox = ({type = 'checkbox', name, checked = false, onChange}) => (
-    <input type={type} name={name} checked={checked} onChange={onChange}/>
+    <input style={{float: 'right', marginTop:'6px'}} type={type} name={name} checked={checked} onChange={onChange}/>
 );
 
 export default class CreateInvestmentContent extends React.Component {
@@ -28,14 +28,12 @@ export default class CreateInvestmentContent extends React.Component {
     }
 
     componentDidMount() {
-
         getAllTodos()
             .then(response => {
                 let todos = response.map((item) =>
                     item = {...item, 'checked': false}
                 )
                 this.setState({todos: todos});
-                console.log(this.state.todos)
             })
     }
 
@@ -99,7 +97,7 @@ export default class CreateInvestmentContent extends React.Component {
             <Form style={FormStyle}>
                 <Form.Row>
                     <Form.Group controlId="formGridNameToShow">
-                        <Form.Label>NameToShow</Form.Label>
+                        <Form.Label>Name</Form.Label>
                         <Form.Control name={'nameToShow'} placeholder="Enter name to show"
                                       onChange={this.handleChange}/>
                     </Form.Group>
@@ -109,17 +107,18 @@ export default class CreateInvestmentContent extends React.Component {
                     <Form.Control name={'description'} placeholder="Enter description"
                                   onChange={this.handleChange}/>
                 </Form.Group>
+                <h6>Image</h6>
                 <input type="file" name="file" onChange={this.onChangeHandler}/>
-
+                <h6 className={"mt-3"}>Todos</h6>
                 <div className="flex-container">
-                    <div className="flex-child magenta">
+                    <div className={"child-container"} style={{width:'90%'}}>
                         {this.mapToList(this.state.todos)}
                     </div>
                 </div>
 
                 <ButtonToolbar className="justify-content-between">
                     <ButtonGroup style={ButtonGroupStyle}>
-                        <Button style={ButtonStyle} variant="outline-primary" onClick={this.handleSubmit}>
+                        <Button style={ButtonStyle} variant={"elegant"} onClick={this.handleSubmit}>
                             Save
                         </Button>
                     </ButtonGroup>
