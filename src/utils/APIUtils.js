@@ -1,13 +1,14 @@
 const API_BASE_INVESTMENT_URL = 'http://localhost:8080/api/house';
 const API_BASE_TODO_URL = 'http://localhost:8080/api/todo';
 const API_BASE_URL = 'http://localhost:8080/api';
+const LOGIN_URL = 'http://localhost:8080/api/login';
 
 const request = (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json',
+        'Authorization': `Basic ${localStorage.getItem('token')}`
     });
-
-    const defaults = {headers: headers};
+    const defaults = {headers: headers,credentials: 'same-origin'};
     options = Object.assign({}, defaults, options);
 
     return fetch(options.url, options)
@@ -21,6 +22,18 @@ export function getAllHouses(){
     });
 }
 
+export function checkLoginCredentials(username, password ){
+    return request({
+        url: LOGIN_URL,
+        method:'POST',
+        body: JSON.stringify({
+            username:username,
+            password:password
+        })
+    });
+}
+
+// auth
 export function sendCreatedInvestment(data){
     return request({
         url: API_BASE_INVESTMENT_URL,
@@ -51,6 +64,7 @@ export function sendDefaultTodo(data){
     });
 }
 
+// auth
 export function sendSpecificInvestmentTodo(data, investmentId){
     return request({
         url: API_BASE_INVESTMENT_URL+'/'+investmentId+'/todo',

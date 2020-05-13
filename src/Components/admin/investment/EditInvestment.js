@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {getTodosHouse} from "../../../utils/APIUtils";
 import TodoList from "../../todos/TodoList";
-import Button from "@material-ui/core/Button";
 import CreateButton from "../CreateButton";
 import CreateTodoContent from "../todo/CreateTodoContent";
 

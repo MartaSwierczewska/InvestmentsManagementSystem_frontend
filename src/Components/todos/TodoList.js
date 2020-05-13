@@ -4,8 +4,6 @@ import {MDBInput} from "mdbreact";
 import Background from "../../assets/background.jpg";
 import Button from "react-bootstrap/Button";
 import {Container, ListGroup} from "react-bootstrap";
-import InputGroup from "react-bootstrap/InputGroup";
-import Checkbox from "./Checkbox";
 
 export default class TodoList extends Component {
 

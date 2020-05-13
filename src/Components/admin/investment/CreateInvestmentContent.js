@@ -1,5 +1,5 @@
 import React from "react";
-import {getAllTodos, getImage, sendCreatedInvestment} from "../../../utils/APIUtils";
+import {getAllTodos, sendCreatedInvestment} from "../../../utils/APIUtils";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -50,7 +50,9 @@ export default class CreateInvestmentContent extends React.Component {
         event.preventDefault();
         sendCreatedInvestment(this.state)
             .then(response => {
-                this.setState({isSuccessfullySaved: true});
+                if(response.status===200){
+                    this.setState({isSuccessfullySaved: true});
+                }
             }).catch(function (error) {
             console.log('There has been a problem with your fetch operation: ', error.message);
         });
@@ -119,7 +121,6 @@ export default class CreateInvestmentContent extends React.Component {
                             Save
                         </Button>
                     </ButtonGroup>
-
                     {this.state.isSuccessfullySaved && <ButtonGroup style={ButtonGroupStyle}>
                         <Alert variant={"success"}>
                             Success!
