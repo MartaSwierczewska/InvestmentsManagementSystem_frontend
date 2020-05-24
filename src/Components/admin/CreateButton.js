@@ -1,7 +1,7 @@
 import React from "react";
 import {Container, Modal} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {LG, OUTLINE_PRIMARY} from "../../utils/Const";
+import {LG, LIGHT} from "../../utils/Const";
 
 export default class CreateButton extends React.Component {
     constructor(props) {
@@ -36,7 +36,7 @@ export default class CreateButton extends React.Component {
     render() {
         return (
             <Container>
-                <Button variant={OUTLINE_PRIMARY} onClick={this.setIsModal}>
+                <Button variant={LIGHT} onClick={this.setIsModal}>
                     {this.state.name}
                 </Button>
 

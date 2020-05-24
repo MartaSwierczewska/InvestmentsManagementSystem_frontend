@@ -56,6 +56,7 @@ export function deleteInvestment(id){
 export function getAllTodos(){
     return request({
         url: API_BASE_TODO_URL,
+        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         method: 'GET'
     });
 }
@@ -63,6 +64,7 @@ export function getAllTodos(){
 export function sendDefaultTodo(data){
     return request({
         url: API_BASE_TODO_URL,
+        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         method:'POST',
         body:JSON.stringify(data)
     });
@@ -81,6 +83,7 @@ export function sendSpecificInvestmentTodo(data, investmentId){
 export function getTodosHouse(investmentId) {
     return request({
         url: API_BASE_INVESTMENT_URL+'/'+investmentId+'/todos',
+        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         method: 'GET'
     });
 }
@@ -88,6 +91,7 @@ export function getTodosHouse(investmentId) {
 export function sendUpdatedTodos(todos,investmentId){
     return request({
         url:API_BASE_INVESTMENT_URL+'/'+investmentId,
+        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         method:'POST',
         body:JSON.stringify(todos)
     });
@@ -104,6 +108,7 @@ export function getImage(houseName) {
 export function downloadFile(houseId, id){
     return request({
         url: API_BASE_URL+'/'+houseId+'/'+id,
+        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         method:'GET'
     });
 }
@@ -111,6 +116,7 @@ export function downloadFile(houseId, id){
 export function uploadFileToServer(idGeneral, data){
     return request({
         url:API_BASE_URL+'/'+idGeneral,
+        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         method:'POST',
         body:data //chyba juz jest dobry format
     });
