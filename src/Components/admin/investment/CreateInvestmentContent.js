@@ -18,10 +18,12 @@ export default class CreateInvestmentContent extends React.Component {
             isSuccessfullySaved: false,
             showButton:false,
             fileNamePath: '',
+            file: '',
             todos: []
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.getBase64 = this.getBase64.bind(this);
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
@@ -46,6 +48,7 @@ export default class CreateInvestmentContent extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        console.log(this.state)
         sendCreatedInvestment(this.state)
             .then(response => {
                 // TODO: tak na chama jest zrobione, zakladajac ze zawsze ten sam token
@@ -58,9 +61,24 @@ export default class CreateInvestmentContent extends React.Component {
         });
     }
 
-    onChangeHandler(event) {
+    getBase64(file, cb) {
+        let reader = new FileReader();
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+
+        reader.onloadend = () => cb(reader.result)
+        reader.readAsDataURL(file);
+    }
+
+     onChangeHandler(event) {
+         // this.getBase64(new File([event.target.files[0]], event.target.files[0].name), (a) => {
+         //     this.setState({
+         //         file: a,
+         //     })
+         // })
         this.setState({
-            fileNamePath: event.target.files[0].name
+            file: URL.createObjectURL(event.target.files[0])
         })
     }
 
@@ -108,7 +126,7 @@ export default class CreateInvestmentContent extends React.Component {
                                   onChange={this.handleChange}/>
                 </Form.Group>
                 <h6>Image</h6>
-                <input type="file" name="file" onChange={this.onChangeHandler}/>
+                <input type="file" name="file" accept="image/x-png,image/gif,image/jpeg" onChange={this.onChangeHandler}/>
                 <h6 className={"mt-3"}>Todos</h6>
                 <div className="flex-container">
                     <div className={"child-container"} style={{width:'90%'}}>

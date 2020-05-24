@@ -18,11 +18,13 @@ export default class SectionTitle extends React.Component {
         getAllHouses()
             .then((result) => {
                 let i = 0;
-                console.log(result)
                 let cards = result.map((item) =>
-                    <ItemCardAdmin key={i++} id={item.id} title={item.nameToShow} name={item.name}
+                {
+                    console.log(item)
+                    return <ItemCardAdmin key={i++} id={item.id} title={item.nameToShow} name={item.name}
                                    description={item.description}
-                                   image={getImage(item.name)} buttonTextEdit={"Show"} buttonTextDelete={"Delete"}/>
+                                   image={item.file} buttonTextEdit={"Show"} buttonTextDelete={"Delete"}/>
+                }
                 );
                 this.setState({investments: cards});
             });
