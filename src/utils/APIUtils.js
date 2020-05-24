@@ -18,7 +18,8 @@ const request = (options) => {
 export function getAllHouses(){
     return request({
        url: API_BASE_INVESTMENT_URL + '/all',
-       method: 'GET'
+        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
+        method: 'GET'
     });
 }
 
@@ -48,8 +49,7 @@ export function deleteInvestment(id){
     return request({
         url: API_BASE_INVESTMENT_URL+'/'+id,
         headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
-        method: 'DELETE',
-        mode: 'no-cors'
+        method: 'DELETE'
     });
 }
 

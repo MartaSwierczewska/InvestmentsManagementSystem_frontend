@@ -32,8 +32,10 @@ export default class Login extends React.Component {
             } else {
                 console.log("Upload error. HTTP error/status code=", error.message);
             }
+        }).then(r => {
+            window.open('http://localhost:3000/houses', '_self')
         });
-        window.open('http://localhost:3000/houses', '_self')
+
     }
 
     handleUsernameInputChange(value) {
@@ -46,10 +48,6 @@ export default class Login extends React.Component {
         this.setState({
             password: value
         })
-    }
-
-    componentDidMount() {
-        localStorage.setItem('token', undefined);
     }
 
     render() {
