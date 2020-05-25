@@ -18,11 +18,11 @@ export default class SectionTitle extends React.Component {
         getAllHouses()
             .then((result) => {
                 let i = 0;
-                console.log(result)
+                console.log(result);
                 let cards = result.map((item) =>
                     <ItemCardAdmin key={i++} id={item.id} title={item.nameToShow} name={item.name}
                                    description={item.description}
-                                   image={getImage(item.name)} buttonTextEdit={"Show"} buttonTextDelete={"Delete"}/>
+                                   image={getImage(item.fileNamePath)} buttonTextEdit={"Wyświetl"} buttonTextDelete={"Usuń"}/>
                 );
                 this.setState({investments: cards});
             });
@@ -31,7 +31,7 @@ export default class SectionTitle extends React.Component {
     render() {
         return (
             <div className={"background"} style={{backgroundImage: `url(${Background})`, height: '85vh'}}>
-                <CreateButton name={"Create new investment"} body={<CreateInvestmentContent/>}/>
+                <CreateButton name={"Dodaj inwestycję"} body={<CreateInvestmentContent/>}/>
                 <CardDeck>
                     {this.state.investments}
                 </CardDeck>

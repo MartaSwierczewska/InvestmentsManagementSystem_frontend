@@ -110,7 +110,6 @@ export default class TodoList extends Component {
                                     <MDBInput type="checkbox" onChange={this.onToggle.bind(this, i)}
                                               style={{display: 'inline', bottom: '0px', right: '-180px'}}
                                               checked={item.completed}/>
-
                                 </div>
 
                                 <button onClick={this.downloadFile.bind(this, item.idGeneral)}>

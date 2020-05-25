@@ -21,7 +21,11 @@ export default class ItemCard extends React.Component {
     deleteHandler(id){
         deleteInvestment(id)
             .then((response) => {
-                alert("Usunięto inwestycję o id: "+this.state.id);
+                if(response.ok){
+                    alert("Usunięto inwestycję o id: "+this.state.id);
+                } else{
+                    alert("Nie masz uprawnień, nie usunięto inwestycji");
+                }
                 window.location.reload();
             }).catch(function(error){
             console.log('There has been a problem with your fetch operation: ', error.message);

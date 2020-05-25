@@ -13,10 +13,10 @@ export default class TopBar extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <Nav.Link href="/houses" style={{fontSize: "20px", color:"#222222"}}>Home</Nav.Link>
+                        <Nav.Link href="/houses" style={{fontSize: "20px", color:"#222222", marginRight:"20px"}}>Strona główna</Nav.Link>
                     </Nav>
-                    <Nav className="ml-auto">
-                        <Nav.Link href="/" style={{fontSize: "20px", color:"#222222"}} >Logout</Nav.Link>
+                    <Nav>
+                        <Nav.Link href="/" style={{fontSize: "20px", color:"#222222"}} >Wyloguj</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>)

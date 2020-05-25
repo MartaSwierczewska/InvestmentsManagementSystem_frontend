@@ -48,8 +48,7 @@ export default class CreateInvestmentContent extends React.Component {
         event.preventDefault();
         sendCreatedInvestment(this.state)
             .then(response => {
-                // TODO: tak na chama jest zrobione, zakladajac ze zawsze ten sam token
-                if ( localStorage.getItem('token') === 'YWRtaW46YWRtaW4=') {
+                if ( response.ok) {
                     this.setState({isSuccessfullySaved: true});
                 }
                 this.setState({showButton:true});
@@ -124,12 +123,12 @@ export default class CreateInvestmentContent extends React.Component {
                     </ButtonGroup>
                     {(this.state.isSuccessfullySaved && this.state.showButton) && <ButtonGroup style={ButtonGroupStyle}>
                         <Alert variant={"success"}>
-                            Success!
+                            Dodano!
                         </Alert>
                     </ButtonGroup>}
                     {(!this.state.isSuccessfullySaved && this.state.showButton) && <ButtonGroup style={ButtonGroupStyle}>
                         <Alert variant={"danger"}>
-                            Authorization required!
+                            Nie masz uprawnień!
                         </Alert>
                     </ButtonGroup>}
                 </ButtonToolbar>

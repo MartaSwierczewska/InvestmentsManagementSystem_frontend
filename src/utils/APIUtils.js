@@ -98,9 +98,8 @@ export function sendUpdatedTodos(todos,investmentId){
 }
 
 export function getImage(houseName) {
-    return require(`../assets/houses/house1.jpg`);
+    return require(`../assets/houses/${houseName}`);
 }
-
 
 //-------------------------------------------------
 
