@@ -98,26 +98,25 @@ export function sendUpdatedTodos(todos,investmentId){
 }
 
 export function getImage(houseName) {
-    return require(`../assets/houses/${houseName}`);
+    // return require(`../assets/houses/${houseName}`);
+    return require(`../assets/houses/house1.jpg`);
 }
 
-//-------------------------------------------------
 
-
-export function downloadFile(houseId, id){
+export function downloadDocument(id){
     return request({
-        url: API_BASE_URL+'/'+houseId+'/'+id,
-        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
+        url: API_BASE_INVESTMENT_URL+'/document/'+id,
+        headers: {'Authorization': `Basic ${localStorage.getItem('token')}`},
         method:'GET'
     });
 }
 
-export function uploadFileToServer(idGeneral, data){
+export function uploadFileToServer(generalId, data){
     return request({
-        url:API_BASE_URL+'/'+idGeneral,
-        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
+        url:API_BASE_INVESTMENT_URL+'/document/'+generalId,
+        headers: {'Authorization': `Basic ${localStorage.getItem('token')}`},
         method:'POST',
-        body:data //chyba juz jest dobry format
+        body:data
     });
 }
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {downloadFile, getTodosHouse, sendUpdatedTodos, uploadFileToServer} from "../../utils/APIUtils";
+import {downloadDocument, getTodosHouse, sendUpdatedTodos, uploadFileToServer} from "../../utils/APIUtils";
 import {MDBInput} from "mdbreact";
 import Background from "../../assets/background.jpg";
 import Button from "react-bootstrap/Button";
@@ -16,7 +16,7 @@ export default class TodoList extends Component {
 
         this.sendJsonTodos = this.sendJsonTodos.bind(this);
         this.handleUploadFile = this.handleUploadFile.bind(this);
-        this.downloadFile = this.downloadFile.bind(this);
+        this.handleDownloadFile = this.handleDownloadFile.bind(this);
     }
 
     componentDidMount() {
@@ -25,9 +25,10 @@ export default class TodoList extends Component {
                 var listTodos = result.map((item) => {
                     console.log(item)
                     return {
-                        id: item.todo.id,
+                        id: item.id,
                         description: item.todo.description,
-                        completed: item.completed
+                        completed: item.completed,
+                        documentName: item.document.name
                     };
                 });
                 this.setState({todos: listTodos});
@@ -59,14 +60,15 @@ export default class TodoList extends Component {
 
     //------------------------------------------------------------
 
-    handleUploadFile = (idGeneral, event) => {
+    handleUploadFile(id,event) {
         const data = new FormData();
         data.append('file', event.target.files[0]);
         data.append('name', 'my_file');
 
-        uploadFileToServer(idGeneral, data)
+        console.log(data);
+        uploadFileToServer(id, data)
             .then((response) => {
-                alert("File uploaded successfully.");
+                alert("Dodano plik");
                 window.location.reload();
             }).catch(function (error) {
             console.log(error);
@@ -78,18 +80,19 @@ export default class TodoList extends Component {
         });
     };
 
-    downloadFile(id) {
-        downloadFile(id)
-            .then(response => {
-                // !!!! to jest taka troche sciema XD
-                const filename = this.state.todos[id % 4 - 1].documentName;
-                response.blob().then(blob => {
-                    let url = window.URL.createObjectURL(blob);
-                    let a = document.createElement('a');
-                    a.href = url;
-                    a.download = filename;
-                    a.click();
-                });
+
+    handleDownloadFile(id) {
+        console.log("pobieranie")
+
+        downloadDocument(id)
+            .then((response) => response.blob())
+            .then((blob) => {
+                const url = window.URL.createObjectURL(new Blob([blob]));
+                const link = document.createElement('a');
+                link.href = url;
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode.removeChild(link);
             });
     }
 
@@ -97,12 +100,15 @@ export default class TodoList extends Component {
 
     render() {
         return (
-            <div className={"backgroundTODO"} style={{backgroundImage: `url(${Background})`,  backgroundRepeat: 'no-repeat',
-                backgroundAttachment: 'fixed', backgroundPosition: 'center', backgroundSize: 'cover'}}>
+            <div className={"backgroundTODO"} style={{
+                backgroundImage: `url(${Background})`, backgroundRepeat: 'no-repeat',
+                backgroundAttachment: 'fixed', backgroundPosition: 'center', backgroundSize: 'cover'
+            }}>
                 <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px', height: '90vh'}}>
                     <CreateButton name={"Dodaj czynnosc"} body={<CreateTodoContent/>}/>
                     <h1 style={{paddingTop: '40px', paddingBottom: '10px', textAlign: 'center'}}>To do list:</h1>
                     <ListGroup style={{width: "30rem", position: 'relative', left: '31%'}}>
+                        {console.log(this.state.todos)}
                         {this.state.todos.map((item, i) =>
                             <ListGroup.Item key={i} style={{padding: '20px'}}>
                                 <div>
@@ -112,19 +118,18 @@ export default class TodoList extends Component {
                                               checked={item.completed}/>
                                 </div>
 
-                                <button onClick={this.downloadFile.bind(this, item.idGeneral)}>
-                                    <i className="fas fa-file-download"/> {item.documentName}</button>
+                                <button onClick={this.handleDownloadFile.bind(this,1)}>
+                                    <i className="fas fa-file-download"/>{' '+item.documentName}</button>
 
                                 <input style={{marginTop: '15px', width: '250px'}} type="file" className="form-control"
-                                       name="file"
-                                       onChange={this.handleUploadFile.bind(this, item.idGeneral)}/>
+                                       name="file" onChange={(e) => this.handleUploadFile(item.id, e)}/>
 
                             </ListGroup.Item>
                         )}
                     </ListGroup>
                     <br/>
                     <Button variant={"elegant"} style={{position: 'relative', left: '47%'}}
-                            onClick={this.sendJsonTodos}>Send</Button>
+                            onClick={this.sendJsonTodos}>Wyślij</Button>
                 </Container>
             </div>
         )
