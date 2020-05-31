@@ -19,6 +19,10 @@ export default class Login extends React.Component {
         this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
     }
 
+    componentDidMount() {
+        localStorage.clear()
+    }
+
     checkLogin() {
         checkLoginCredentials(this.state.username, this.state.password)
             .then((result) => {

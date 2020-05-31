@@ -17,6 +17,7 @@ export default class SectionTitle extends React.Component {
     componentDidMount() {
         getAllHouses()
             .then((result) => {
+                console.log(result)
                 let i = 0;
                 let cards = result.map((item) =>
                     <ItemCardAdmin key={i++} id={item.id} title={item.nameToShow} name={item.name}

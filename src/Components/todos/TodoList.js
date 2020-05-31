@@ -106,8 +106,7 @@ export default class TodoList extends Component {
             }}>
                 <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px', height: '90vh'}}>
                     <CreateButton name={"Dodaj czynnosc"} body={<CreateTodoContent/>}/>
-                    <h1 style={{paddingTop: '40px', paddingBottom: '10px', textAlign: 'center'}}>To do list:</h1>
-                    <ListGroup style={{width: "30rem", position: 'relative', left: '31%'}}>
+                    <ListGroup style={{width: "30rem", position: 'relative', left: '31%', 'padding-top':'100px'}}>
                         {console.log(this.state.todos)}
                         {this.state.todos.map((item, i) =>
                             <ListGroup.Item key={i} style={{padding: '20px'}}>
@@ -118,7 +117,7 @@ export default class TodoList extends Component {
                                               checked={item.completed}/>
                                 </div>
 
-                                <button onClick={this.handleDownloadFile.bind(this,1)}>
+                                <button onClick={this.handleDownloadFile.bind(this,i+1)}>
                                     <i className="fas fa-file-download"/>{' '+item.documentName}</button>
 
                                 <input style={{marginTop: '15px', width: '250px'}} type="file" className="form-control"
