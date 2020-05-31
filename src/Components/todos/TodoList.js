@@ -4,8 +4,9 @@ import {MDBInput} from "mdbreact";
 import Background from "../../assets/background.jpg";
 import Button from "react-bootstrap/Button";
 import {Container, ListGroup} from "react-bootstrap";
-import CreateTodoContent from "../admin/todo/CreateTodoContent";
-import CreateButton from "../admin/CreateButton";
+import CreateTodoContent from "../contents/CreateTodoContent";
+import CreateButton from "../shared/CreateButton";
+import {white} from "material-ui";
 
 export default class TodoList extends Component {
 

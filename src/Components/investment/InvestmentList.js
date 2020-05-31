@@ -1,12 +1,12 @@
 import React from "react";
 import {CardDeck} from "react-bootstrap";
 import {getAllHouses, getImage} from "../../utils/APIUtils";
-import ItemCardAdmin from "../admin/ItemCardAdmin";
+import ItemCard from "./ItemCard";
 import Background from "../../assets/background.jpg";
-import CreateInvestmentContent from "../admin/investment/CreateInvestmentContent";
-import CreateButton from "../admin/CreateButton";
+import CreateInvestmentContent from "../contents/CreateInvestmentContent";
+import CreateButton from "../shared/CreateButton";
 
-export default class SectionTitle extends React.Component {
+export default class InvestmentList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +20,7 @@ export default class SectionTitle extends React.Component {
                 console.log(result)
                 let i = 0;
                 let cards = result.map((item) =>
-                    <ItemCardAdmin key={i++} id={item.id} title={item.nameToShow} name={item.name}
+                    <ItemCard key={i++} id={item.id} title={item.nameToShow} name={item.name}
                                    description={item.description}
                                    image={getImage(item.fileNamePath)} buttonTextEdit={"Wyświetl"}
                                    buttonTextDelete={"Usuń"}/>

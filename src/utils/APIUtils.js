@@ -114,7 +114,8 @@ export function getImage(houseName) {
 export function downloadDocument(id){
     return request2({
         url: API_BASE_INVESTMENT_URL+'/document/'+id,
-        headers: {'Authorization': `Basic ${localStorage.getItem('token')}`},
+        headers: {'Content-Type': 'blob', 'Authorization': `Basic ${localStorage.getItem('token')}`},
+        responseType: 'blob',
         method:'GET'
     });
 }

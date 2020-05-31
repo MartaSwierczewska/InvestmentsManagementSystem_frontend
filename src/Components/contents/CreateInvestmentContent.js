@@ -1,5 +1,5 @@
 import React from "react";
-import {getAllTodos, sendCreatedInvestment} from "../../../utils/APIUtils";
+import {getAllTodos, sendCreatedInvestment} from "../../utils/APIUtils";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";

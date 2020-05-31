@@ -6,7 +6,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import TodoList from "./Components/todos/TodoList";
 import {Container} from "react-bootstrap";
 import LoginPage from "./Components/login/LoginPage";
-import InvestmentList from "./Components/shared/InvestmentList";
+import InvestmentList from "./Components/investment/InvestmentList";
 import PrivateRoute from "./Components/route/PrivateRoute";
 
 class App extends Component {
