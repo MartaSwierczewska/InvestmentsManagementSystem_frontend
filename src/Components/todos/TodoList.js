@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {downloadDocument, getTodosHouse, sendUpdatedTodos, uploadFileToServer, removeTodoFromHouse} from "../../utils/APIUtils";
+import {
+    downloadDocument,
+    getTodosHouse,
+    sendUpdatedTodos,
+    uploadFileToServer,
+    removeTodoFromHouse,
+    extractCSVToTodos
+} from "../../utils/APIUtils";
 import {MDBInput} from "mdbreact";
 import Background from "../../assets/background.jpg";
 import Button from "react-bootstrap/Button";
@@ -17,6 +24,7 @@ export default class TodoList extends Component {
         this.sendJsonTodos = this.sendJsonTodos.bind(this);
         this.handleUploadFile = this.handleUploadFile.bind(this);
         this.handleDownloadFile = this.handleDownloadFile.bind(this);
+        this.handleRemoveTodo = this.handleRemoveTodo.bind(this);
     }
 
     componentDidMount() {
@@ -46,7 +54,7 @@ export default class TodoList extends Component {
     sendJsonTodos() {
         sendUpdatedTodos(this.state.todos, this.investmentId)
             .then((response) => {
-                alert("Todos sent successfully.");
+                alert("Zapisano stan inwestycji");
                 window.location.reload();
             }).catch(function (error) {
             console.log(error);
@@ -64,7 +72,6 @@ export default class TodoList extends Component {
         data.append('file', event.target.files[0]);
         data.append('name', 'my_file');
 
-        console.log(data);
         uploadFileToServer(id, data)
             .then((response) => {
                 alert("Dodano plik");
@@ -81,21 +88,34 @@ export default class TodoList extends Component {
 
 
     handleDownloadFile(id, filename) {
+        console.log(id)
         downloadDocument(id)
-            .then((response) => response.blob())
-            .then((blob) => {
-                let url = window.URL.createObjectURL(blob);
-                let a = document.createElement('a');
-                a.href = url;
-                a.download = filename;
-                a.click();
-            });
+            .then((response) => {
+                if (response.ok) {
+                    response.blob()
+                        .then((blob) => {
+                            let url = window.URL.createObjectURL(blob);
+                            let a = document.createElement('a');
+                            a.href = url;
+                            a.download = filename;
+                            a.click();
+                        });
+                } else {
+                    alert("Nie udało się pobrać pliku");
+                }
+            })
     }
 
+    // TODO: problem z przechwytywaniem i jako id, po usunięciu i to nie jest to samo co id ogólne obiektu
     handleRemoveTodo(id) {
+        console.log(id)
         removeTodoFromHouse(id)
             .then((response) => {
-                alert("Usunięto plik");
+                if (response.ok) {
+                    alert("Usunięto czynność");
+                } else {
+                    alert("Nie masz uprawnień, nie usunięto czynności");
+                }
                 window.location.reload();
             }).catch(function (error) {
             console.log(error);
@@ -107,6 +127,24 @@ export default class TodoList extends Component {
         });
     };
 
+    handleUploadCSVTodos(event) {
+        const data = new FormData();
+        data.append('file', event.target.files[0]);
+        data.append('name', 'my_file');
+
+        extractCSVToTodos(this.investmentId, data)
+            .then((response) => {
+                alert("Zaimportowano czynności");
+                window.location.reload();
+            }).catch(function (error) {
+            console.log(error);
+            if (error.response) {
+                console.log("Upload error. HTTP error/status code=", error.response.status);
+            } else {
+                console.log("Upload error. HTTP error/status code=", error.message);
+            }
+        });
+    }
 
     render() {
         return (
@@ -115,9 +153,14 @@ export default class TodoList extends Component {
                 backgroundAttachment: 'fixed', backgroundPosition: 'center', backgroundSize: 'cover'
             }}>
                 <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px', height: '90vh'}}>
-                    <CreateButton name={"Dodaj czynnosc"} body={<CreateTodoContent/>}/>
+                    <CreateButton name={"Dodaj czynnośc"} body={<CreateTodoContent/>}/>
+
+                    {/*TODO: połączyć napis z przyciskiem*/}
+                    <h4>Zaimportuj czynności z pliku CSV</h4>
+                    <input style={{marginTop: '15px', width: '250px'}} type="file" className="form-control"
+                           name="file" onChange={(e) => this.handleUploadCSVTodos(e)}/>
+
                     <ListGroup style={{width: "30rem", position: 'relative', left: '31%', paddingTop: '100px'}}>
-                        {console.log(this.state.todos)}
                         {this.state.todos.map((item, i) =>
                             <ListGroup.Item key={i} style={{padding: '20px'}}>
                                 <div>
@@ -135,7 +178,9 @@ export default class TodoList extends Component {
                                        className="form-control"
                                        name="file" onChange={(e) => this.handleUploadFile(item.id, e)}/>
 
-                                <button onClick={this.handleRemoveTodo.bind(this, i + 1)}><i
+                                <button onClick={() => {
+                                    if (window.confirm('Czy na pewno chcesz usunąć ten element?')) this.handleRemoveTodo(this, i + 1)
+                                }}><i
                                     className="fa fa-trash"/></button>
 
                             </ListGroup.Item>

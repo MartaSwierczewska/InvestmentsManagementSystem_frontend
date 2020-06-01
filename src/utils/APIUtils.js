@@ -41,7 +41,6 @@ export function checkLoginCredentials(username, password ){
     });
 }
 
-// auth
 export function sendCreatedInvestment(data){
     return request({
         url: API_BASE_INVESTMENT_URL,
@@ -51,7 +50,6 @@ export function sendCreatedInvestment(data){
     });
 }
 
-// auth
 export function deleteInvestment(id){
     return request({
         url: API_BASE_INVESTMENT_URL+'/'+id,
@@ -77,7 +75,6 @@ export function sendDefaultTodo(data){
     });
 }
 
-// auth
 export function sendSpecificInvestmentTodo(data, investmentId){
     return request({
         url: API_BASE_INVESTMENT_URL+'/'+investmentId+'/todo',
@@ -127,15 +124,22 @@ export function uploadFileToServer(generalId, data){
     });
 }
 
-export function removeTodoFromHouse(id){
+export function removeTodoFromHouse(todoId){
     return request({
-        url:API_BASE_INVESTMENT_URL+'/'+id+'/todo',
+        url:API_BASE_INVESTMENT_URL+'/'+todoId+'/todo',
         headers: {'Authorization': `Basic ${localStorage.getItem('token')}`},
         method:'DELETE'
     });
 }
 
-
+export function extractCSVToTodos(houseId, data) {
+    return request({
+        url:API_BASE_INVESTMENT_URL+'/'+houseId+'/todos',
+        headers: {'Authorization': `Basic ${localStorage.getItem('token')}`},
+        method:'POST',
+        body:data
+    });
+}
 
 
 

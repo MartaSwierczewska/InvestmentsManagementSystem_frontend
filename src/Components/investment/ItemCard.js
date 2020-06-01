@@ -43,7 +43,7 @@ export default class ItemCard extends React.Component {
                     </div>
                 </Card.Body>
                 <Button className={"button-card"} href={this.state.button_url}>{this.state.buttonTextEdit}</Button>
-                <Button className={"button-card"} onClick={()=>this.deleteHandler(this.state.id)}>{this.state.buttonTextDelete}</Button>
+                <Button className={"button-card"} onClick={()=>{ if (window.confirm('Czy na pewno chcesz usunąć ten element?')) this.deleteHandler(this.state.id) }}>{this.state.buttonTextDelete}</Button>
             </Card>
         );
     }

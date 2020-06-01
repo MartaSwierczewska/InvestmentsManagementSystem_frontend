@@ -29,8 +29,7 @@ export default class CreateTodoContent extends React.Component {
         event.preventDefault();
         sendSpecificInvestmentTodo(this.state, this.investmentId)
             .then(response => {
-                // TODO: tak na chama jest zrobione, zakladajac ze zawsze ten sam token
-                if ( localStorage.getItem('token') === 'YWRtaW46YWRtaW4=') {
+                if (response.ok) {
                     this.setState({isSuccessfullySaved: true});
                 }
                 this.setState({showButton:true});
