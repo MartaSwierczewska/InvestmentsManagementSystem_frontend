@@ -1,6 +1,5 @@
 const API_BASE_INVESTMENT_URL = 'http://localhost:8080/api/house';
 const API_BASE_TODO_URL = 'http://localhost:8080/api/todo';
-const API_BASE_URL = 'http://localhost:8080/api';
 const LOGIN_URL = 'http://localhost:8080/api/login';
 
 const request = (options) => {
@@ -107,7 +106,6 @@ export function sendUpdatedTodos(todos,investmentId){
 
 export function getImage(houseName) {
     return require(`../assets/houses/${houseName}`);
-    // return require(`../assets/houses/house1.jpg`);
 }
 
 
@@ -128,6 +126,15 @@ export function uploadFileToServer(generalId, data){
         body:data
     });
 }
+
+export function removeTodoFromHouse(id){
+    return request({
+        url:API_BASE_INVESTMENT_URL+'/'+id+'/todo',
+        headers: {'Authorization': `Basic ${localStorage.getItem('token')}`},
+        method:'DELETE'
+    });
+}
+
 
 
 

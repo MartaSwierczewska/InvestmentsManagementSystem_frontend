@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './LoginPage.css';
 import Background from './bg-01.jpg';
 import {checkLoginCredentials} from "../../utils/APIUtils";
-import Link from "@material-ui/core/Link";
 
 export default class Login extends React.Component {
 
@@ -27,7 +26,6 @@ export default class Login extends React.Component {
         checkLoginCredentials(this.state.username, this.state.password)
             .then((result) => {
                 this.setState({token: result.token});
-                alert(this.state.token);
                 localStorage.setItem('token', this.state.token)
             }).catch(function (error) {
             console.log(error);

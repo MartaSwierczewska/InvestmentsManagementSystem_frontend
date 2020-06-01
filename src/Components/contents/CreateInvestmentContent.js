@@ -3,7 +3,7 @@ import {getAllTodos, sendCreatedInvestment} from "../../utils/APIUtils";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import {Alert, ButtonToolbar, Container} from "react-bootstrap";
+import {Alert, ButtonToolbar} from "react-bootstrap";
 
 const Checkbox = ({type = 'checkbox', name, checked = false, onChange}) => (
     <input style={{float: 'right', marginTop:'6px'}} type={type} name={name} checked={checked} onChange={onChange}/>

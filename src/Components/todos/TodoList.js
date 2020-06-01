@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {downloadDocument, getTodosHouse, sendUpdatedTodos, uploadFileToServer} from "../../utils/APIUtils";
+import {downloadDocument, getTodosHouse, sendUpdatedTodos, uploadFileToServer, removeTodoFromHouse} from "../../utils/APIUtils";
 import {MDBInput} from "mdbreact";
 import Background from "../../assets/background.jpg";
 import Button from "react-bootstrap/Button";
 import {Container, ListGroup} from "react-bootstrap";
 import CreateTodoContent from "../contents/CreateTodoContent";
 import CreateButton from "../shared/CreateButton";
-import {white} from "material-ui";
 
 export default class TodoList extends Component {
 
@@ -59,9 +58,8 @@ export default class TodoList extends Component {
         });
     }
 
-    //------------------------------------------------------------
 
-    handleUploadFile(id,event) {
+    handleUploadFile(id, event) {
         const data = new FormData();
         data.append('file', event.target.files[0]);
         data.append('name', 'my_file');
@@ -82,22 +80,33 @@ export default class TodoList extends Component {
     };
 
 
-    handleDownloadFile(id) {
-        console.log("pobieranie")
-
+    handleDownloadFile(id, filename) {
         downloadDocument(id)
             .then((response) => response.blob())
             .then((blob) => {
-                const url = window.URL.createObjectURL(new Blob([blob]));
-                const link = document.createElement('a');
-                link.href = url;
-                document.body.appendChild(link);
-                link.click();
-                link.parentNode.removeChild(link);
+                let url = window.URL.createObjectURL(blob);
+                let a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
             });
     }
 
-    //-----------------------------------------------------------
+    handleRemoveTodo(id) {
+        removeTodoFromHouse(id)
+            .then((response) => {
+                alert("Usunięto plik");
+                window.location.reload();
+            }).catch(function (error) {
+            console.log(error);
+            if (error.response) {
+                console.log("Upload error. HTTP error/status code=", error.response.status);
+            } else {
+                console.log("Upload error. HTTP error/status code=", error.message);
+            }
+        });
+    };
+
 
     render() {
         return (
@@ -107,7 +116,7 @@ export default class TodoList extends Component {
             }}>
                 <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px', height: '90vh'}}>
                     <CreateButton name={"Dodaj czynnosc"} body={<CreateTodoContent/>}/>
-                    <ListGroup style={{width: "30rem", position: 'relative', left: '31%', 'padding-top':'100px'}}>
+                    <ListGroup style={{width: "30rem", position: 'relative', left: '31%', paddingTop: '100px'}}>
                         {console.log(this.state.todos)}
                         {this.state.todos.map((item, i) =>
                             <ListGroup.Item key={i} style={{padding: '20px'}}>
@@ -118,11 +127,16 @@ export default class TodoList extends Component {
                                               checked={item.completed}/>
                                 </div>
 
-                                <button onClick={this.handleDownloadFile.bind(this,i+1)}>
-                                    <i className="fas fa-file-download"/>{' '+item.documentName}</button>
+                                <button
+                                    onClick={this.handleDownloadFile.bind(this, i + 1, this.state.todos[i].documentName)}>
+                                    <i className="fas fa-file-download"/>{' ' + item.documentName}</button>
 
-                                <input style={{marginTop: '15px', width: '250px'}} type="file" className="form-control"
+                                <input style={{marginTop: '15px', width: '250px'}} type="file"
+                                       className="form-control"
                                        name="file" onChange={(e) => this.handleUploadFile(item.id, e)}/>
+
+                                <button onClick={this.handleRemoveTodo.bind(this, i + 1)}><i
+                                    className="fa fa-trash"/></button>
 
                             </ListGroup.Item>
                         )}
