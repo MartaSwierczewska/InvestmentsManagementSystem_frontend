@@ -48,7 +48,7 @@ export default class CreateInvestmentContent extends React.Component {
         event.preventDefault();
         sendCreatedInvestment(this.state)
             .then(response => {
-                if ( response.ok) {
+                if ( response.status!==403) {
                     this.setState({isSuccessfullySaved: true});
                 }
                 this.setState({showButton:true});
@@ -108,7 +108,7 @@ export default class CreateInvestmentContent extends React.Component {
                 </Form.Group>
                 <h6>Image</h6>
                 <input type="file" name="file" onChange={this.onChangeHandler}/>
-                <h6 className={"mt-3"}>Todos</h6>
+                <h6 className={"mt-3"}>Zadania</h6>
                 <div className="flex-container">
                     <div className={"child-container"} style={{width:'90%'}}>
                         {this.mapToList(this.state.todos)}

@@ -19,7 +19,10 @@ export default class TodoList extends Component {
     constructor(props) {
         super(props);
         this.state = {todos: []};
-        this.investmentId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+
+        this.splittedUrl=window.location.href.split('/');
+        this.houseId = this.splittedUrl[this.splittedUrl.length-2];
+        this.categoryId = this.splittedUrl[this.splittedUrl.length-4];
 
         this.sendJsonTodos = this.sendJsonTodos.bind(this);
         this.handleUploadFile = this.handleUploadFile.bind(this);
@@ -28,7 +31,7 @@ export default class TodoList extends Component {
     }
 
     componentDidMount() {
-        getTodosHouse(this.investmentId)
+        getTodosHouse(this.houseId, this.categoryId)
             .then((result) => {
                 var listTodos = result.map((item) => {
                     console.log(item)
@@ -52,18 +55,11 @@ export default class TodoList extends Component {
     }
 
     sendJsonTodos() {
-        sendUpdatedTodos(this.state.todos, this.investmentId)
+        sendUpdatedTodos(this.state.todos, this.houseId, this.categoryId)
             .then((response) => {
                 alert("Zapisano stan inwestycji");
                 window.location.reload();
-            }).catch(function (error) {
-            console.log(error);
-            if (error.response) {
-                console.log("Upload error. HTTP error/status code=", error.response.status);
-            } else {
-                console.log("Upload error. HTTP error/status code=", error.message);
-            }
-        });
+            });
     }
 
 
@@ -88,7 +84,6 @@ export default class TodoList extends Component {
 
 
     handleDownloadFile(id, filename) {
-        console.log(id)
         downloadDocument(id)
             .then((response) => {
                 if (response.ok) {
@@ -106,15 +101,13 @@ export default class TodoList extends Component {
             })
     }
 
-    // TODO: problem z przechwytywaniem i jako id, po usunięciu i to nie jest to samo co id ogólne obiektu
     handleRemoveTodo(id) {
-        console.log(id)
         removeTodoFromHouse(id)
             .then((response) => {
-                if (response.ok) {
-                    alert("Usunięto czynność");
-                } else {
+                if (response.status===403) {
                     alert("Nie masz uprawnień, nie usunięto czynności");
+                } else {
+                   alert("Usunięto zadanie")
                 }
                 window.location.reload();
             }).catch(function (error) {
@@ -132,9 +125,13 @@ export default class TodoList extends Component {
         data.append('file', event.target.files[0]);
         data.append('name', 'my_file');
 
-        extractCSVToTodos(this.investmentId, data)
+        extractCSVToTodos(this.houseId, this.categoryId, data)
             .then((response) => {
-                alert("Zaimportowano czynności");
+                if(response.status===403){
+                    alert("Nie masz uprawnień, nie dodano czynności");
+                } else{
+                    alert("Zaimportowano czynności");
+                }
                 window.location.reload();
             }).catch(function (error) {
             console.log(error);
@@ -153,8 +150,7 @@ export default class TodoList extends Component {
                 backgroundAttachment: 'fixed', backgroundPosition: 'center', backgroundSize: 'cover'
             }}>
                 <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px', height: '90vh'}}>
-                    <CreateButton name={"Dodaj czynnośc"} body={<CreateTodoContent/>}/>
-
+                    <CreateButton name={"Dodaj czynność"} body={<CreateTodoContent/>}/>
                     {/*TODO: połączyć napis z przyciskiem*/}
                     <h4>Zaimportuj czynności z pliku CSV</h4>
                     <input style={{marginTop: '15px', width: '250px'}} type="file" className="form-control"
@@ -179,7 +175,7 @@ export default class TodoList extends Component {
                                        name="file" onChange={(e) => this.handleUploadFile(item.id, e)}/>
 
                                 <button onClick={() => {
-                                    if (window.confirm('Czy na pewno chcesz usunąć ten element?')) this.handleRemoveTodo(this, i + 1)
+                                    if (window.confirm('Czy na pewno chcesz usunąć ten element?')) this.handleRemoveTodo(this.state.todos[i].id)
                                 }}><i
                                     className="fa fa-trash"/></button>
 

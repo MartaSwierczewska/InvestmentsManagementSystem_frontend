@@ -11,9 +11,12 @@ export default class CreateTodoContent extends React.Component {
         this.state = {
             description: '',
             isSuccessfullySaved: false,
-            showButton:false
+            showButton:false,
         };
-        this.investmentId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+
+        this.splittedUrl=window.location.href.split('/');
+        this.houseId = this.splittedUrl[this.splittedUrl.length-2];
+        this.categoryId = this.splittedUrl[this.splittedUrl.length-4];
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,10 +29,11 @@ export default class CreateTodoContent extends React.Component {
     };
 
     handleSubmit(event) {
+        console.log(this.state);
         event.preventDefault();
-        sendSpecificInvestmentTodo(this.state, this.investmentId)
+        sendSpecificInvestmentTodo(this.state, this.houseId, this.categoryId)
             .then(response => {
-                if (response.ok) {
+                if (response.status!==403) {
                     this.setState({isSuccessfullySaved: true});
                 }
                 this.setState({showButton:true});
@@ -37,6 +41,7 @@ export default class CreateTodoContent extends React.Component {
             console.log('There has been a problem with your fetch operation: ', error.message);
         });
     }
+
 
     render() {
         return (

@@ -1,5 +1,6 @@
 const API_BASE_INVESTMENT_URL = 'http://localhost:8080/api/house';
 const API_BASE_TODO_URL = 'http://localhost:8080/api/todo';
+const API_BASE_CATEGORY_URL = 'http://localhost:8080/api/category';
 const LOGIN_URL = 'http://localhost:8080/api/login';
 
 const request = (options) => {
@@ -66,35 +67,26 @@ export function getAllTodos(){
     });
 }
 
-export function sendDefaultTodo(data){
+export function sendSpecificInvestmentTodo(data, investmentId, categoryId){
     return request({
-        url: API_BASE_TODO_URL,
-        headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
-        method:'POST',
-        body:JSON.stringify(data)
-    });
-}
-
-export function sendSpecificInvestmentTodo(data, investmentId){
-    return request({
-        url: API_BASE_INVESTMENT_URL+'/'+investmentId+'/todo',
+        url: API_BASE_INVESTMENT_URL+'/'+investmentId+'/'+categoryId+'/todo',
         method:'POST',
         headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         body:JSON.stringify(data)
     });
 }
 
-export function getTodosHouse(investmentId) {
+export function getTodosHouse(houseId, categoryId) {
     return request({
-        url: API_BASE_INVESTMENT_URL+'/'+investmentId+'/todos',
+        url: API_BASE_INVESTMENT_URL+'/'+houseId+'/'+categoryId+'/todos',
         headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         method: 'GET'
     });
 }
 
-export function sendUpdatedTodos(todos,investmentId){
-    return request({
-        url:API_BASE_INVESTMENT_URL+'/'+investmentId,
+export function sendUpdatedTodos(todos,houseId, categoryId){
+    return request2({
+        url:API_BASE_INVESTMENT_URL+'/'+houseId+'/'+categoryId,
         headers: {'Content-Type': 'application/json', 'Authorization': `Basic ${localStorage.getItem('token')}`},
         method:'POST',
         body:JSON.stringify(todos)
@@ -102,7 +94,12 @@ export function sendUpdatedTodos(todos,investmentId){
 }
 
 export function getImage(houseName) {
-    return require(`../assets/houses/${houseName}`);
+    if(houseName!=null){
+        return require(`../assets/houses/${houseName}`);
+    } else{
+        return require('../assets/houses/default-house.jpg');
+    }
+
 }
 
 
@@ -132,16 +129,22 @@ export function removeTodoFromHouse(todoId){
     });
 }
 
-export function extractCSVToTodos(houseId, data) {
+export function extractCSVToTodos(houseId, categoryId, data) {
     return request({
-        url:API_BASE_INVESTMENT_URL+'/'+houseId+'/todos',
+        url:API_BASE_INVESTMENT_URL+'/'+houseId+'/'+categoryId+'/todos',
         headers: {'Authorization': `Basic ${localStorage.getItem('token')}`},
         method:'POST',
         body:data
     });
 }
 
-
+export function getAllCategories(){
+    return request({
+        url: API_BASE_CATEGORY_URL+'/all/',
+        headers: {'Authorization': `Basic ${localStorage.getItem('token')}`},
+        method:'GET'
+    });
+}
 
 
 

@@ -8,6 +8,7 @@ import {Container} from "react-bootstrap";
 import LoginPage from "./Components/login/LoginPage";
 import InvestmentList from "./Components/investment/InvestmentList";
 import PrivateRoute from "./Components/route/PrivateRoute";
+import CategoryList from "./Components/categories/CategoryList";
 
 class App extends Component {
     render() {
@@ -20,7 +21,8 @@ class App extends Component {
                             <LoginPage/>
                         </Route>
                         <PrivateRoute exact path={"/houses"} component={InvestmentList}/>
-                        <PrivateRoute path={"/investment/:t"} component={TodoList}/>
+                        <PrivateRoute path={"/categories/:t"} component={CategoryList}/>
+                        <PrivateRoute path={"/category/:t/house/:t/todos"} component={TodoList}/>
                     </BrowserRouter>
                 </Container>
             </div>
