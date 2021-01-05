@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.5.1",
     "antd": "^3.23.6",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "canvasjs": "^1.8.3",
     "chart.js": "^2.9.3",
