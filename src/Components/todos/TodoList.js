@@ -68,6 +68,7 @@ export default class TodoList extends Component {
         data.append('file', event.target.files[0]);
         data.append('name', 'my_file');
 
+        console.log(id)
         uploadFileToServer(id, data)
             .then((response) => {
                 alert("Dodano plik");
@@ -84,21 +85,23 @@ export default class TodoList extends Component {
 
 
     handleDownloadFile(id, filename) {
-        downloadDocument(id)
-            .then((response) => {
-                if (response.ok) {
-                    response.blob()
-                        .then((blob) => {
-                            let url = window.URL.createObjectURL(blob);
-                            let a = document.createElement('a');
-                            a.href = url;
-                            a.download = filename;
-                            a.click();
-                        });
-                } else {
-                    alert("Nie udało się pobrać pliku");
-                }
-            })
+        if(this.state.todos[id-1].documentName!==""){
+            downloadDocument(id)
+                .then((response) => {
+                    if (response.ok) {
+                        response.blob()
+                            .then((blob) => {
+                                let url = window.URL.createObjectURL(blob);
+                                let a = document.createElement('a');
+                                a.href = url;
+                                a.download = filename;
+                                a.click();
+                            });
+                    } else {
+                        alert("Nie udało się pobrać pliku");
+                    }
+                })
+        }
     }
 
     handleRemoveTodo(id) {
@@ -152,11 +155,11 @@ export default class TodoList extends Component {
                 <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px', height: '90vh'}}>
                     <CreateButton name={"Dodaj czynność"} body={<CreateTodoContent/>}/>
                     {/*TODO: połączyć napis z przyciskiem*/}
-                    <h4>Zaimportuj czynności z pliku CSV</h4>
+                    <h4 style={{color:'Ivory'}}>Zaimportuj czynności z pliku CSV</h4>
                     <input style={{marginTop: '15px', width: '250px'}} type="file" className="form-control"
                            name="file" onChange={(e) => this.handleUploadCSVTodos(e)}/>
 
-                    <ListGroup style={{width: "30rem", position: 'relative', left: '31%', paddingTop: '100px'}}>
+                    <ListGroup style={{width: "30rem", position: 'relative', left: '31%', paddingTop: '50px'}}>
                         {this.state.todos.map((item, i) =>
                             <ListGroup.Item key={i} style={{padding: '20px'}}>
                                 <div>

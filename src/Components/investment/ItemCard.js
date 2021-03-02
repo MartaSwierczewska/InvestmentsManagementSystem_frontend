@@ -21,10 +21,10 @@ export default class ItemCard extends React.Component {
     deleteHandler(id){
         deleteInvestment(id)
             .then((response) => {
-                if(response.ok){
-                    alert("Usunięto inwestycję o id: "+this.state.id);
-                } else{
+                if(response.status===403){
                     alert("Nie masz uprawnień, nie usunięto inwestycji");
+                } else{
+                    alert("Usunięto inwestycję o id: "+this.state.id);
                 }
                 window.location.reload();
             }).catch(function(error){
@@ -34,7 +34,7 @@ export default class ItemCard extends React.Component {
 
     render() {
         return (
-            <Card style={{minWidth:"200px"}}>
+            <Card style={{minWidth:"250px"}}>
                 <Card.Header as={"h5"}>{this.state.title}</Card.Header>
                 <Card.Img className="houseImg" variant="top" src={this.state.image} />
                 <Card.Body>
@@ -43,8 +43,11 @@ export default class ItemCard extends React.Component {
                     </div>
                 </Card.Body>
                 <Button className={"button-card"} href={this.state.button_url}>{this.state.buttonTextEdit}</Button>
-                <Button className={"button-card"} onClick={()=>{ if (window.confirm('Czy na pewno chcesz usunąć ten element?')) this.deleteHandler(this.state.id) }}>{this.state.buttonTextDelete}</Button>
+                <Button className={"button-card"} onClick={()=>{ if (window.confirm('Czy na pewno chcesz usunąć ten element?'))
+                    this.deleteHandler(this.state.id) }}>{this.state.buttonTextDelete}</Button>
+
             </Card>
         );
     }
 }
+

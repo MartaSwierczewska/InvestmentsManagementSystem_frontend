@@ -39,15 +39,13 @@ export default class CategoryList extends Component {
             }}>
                 <Container className={"shadow-box-example z-depth-5"} style={{marginTop: '30px', height: '90vh'}}>
                     {  console.log(this.state.categories)}
-                    <ListGroup style={{width: "30rem", position: 'relative', left: '31%', paddingTop: '100px'}}>
+                    <ListGroup style={{width: "30rem", position: 'relative', left: '31%', paddingTop: '50px'}}>
                         {this.state.categories.map((item, i) =>
                             <ListGroup.Item key={i} style={{padding: '20px'}}>
                                 <div>
                                     <h4 style={{'display': 'inline'}}>{item.name}</h4>
                                     <Button className={"button-card"} onClick={this.redirect.bind(this, this.state.categories[i].id)}><p>&rarr;</p></Button>
                                 </div>
-                                {/*{  console.log(this.state.categories[i].id)}*/}
-                                {/*{console.log(this.houseId)}*/}
                             </ListGroup.Item>
                         )}
                     </ListGroup>
