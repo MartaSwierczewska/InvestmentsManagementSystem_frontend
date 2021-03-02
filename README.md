@@ -9,9 +9,7 @@ React
 ### Prerequisites 
 Since project consist of Docker images it is possible to run it using Dockerfile. 
 
-It can be started using npm. 
-
-Version of node.js required `node:13.12.0`
+It can be started using npm. Version of node.js required `node:13.12.0`
 
 ### Clone
 Clone this repo to your machine using git clone https://github.com/MartaSwierczewska/InvestmentsManagementSystem_frontend.git (https) or git clone git@github.com:MartaSwierczewska/InvestmentsManagementSystem_frontend.git (ssh)
